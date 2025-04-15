@@ -18,21 +18,6 @@ end
 
 lspconfig.clangd.setup {}
 lspconfig.pyright.setup {}
---spconfig.asm_lsp.setup {}
-
-lspconfig.asm_lsp.setup {
-    cmd = { "asm-lsp", "--stdio" }, -- Ensure correct command
-    filetypes = { "asm", "s", "S" }, -- Supported filetype for assembly files
-    root_dir = lspconfig.util.find_git_ancestor, -- Detect project root
-    settings = {
-        asm = {
-            -- Add any custom settings for asm-lsp here
-            -- For example, to set a specific architecture or format:
-            architecture = "x86_64", -- Example, replace if needed
-            assembler = "nasm",
-        },
-    },
-}
 
 -- Add clangd configuration
 -- lspconfig.clangd.setup {
