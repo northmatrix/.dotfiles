@@ -3,11 +3,11 @@ normal = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 italic = { family = "JetBrainsMono Nerd Font", style = "italic" }
 bold_italic = { family = "JetBrainsMono Nerd Font", style = "bold_italic" }
-size = 9.5
+size = 9.0
 
 
 [window]
-padding = { x = 2, y = 2 }
+padding = { x = 1, y = 1 }
 
 [terminal]
 shell = { program = "/bin/zsh" }
