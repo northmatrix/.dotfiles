@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright", "clangd", "rust_analyzer" }
+local servers = { "html", "cssls", "pyright", "clangd", "rust_analyzer", "asm_lsp" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 -- lsps with default config
@@ -18,6 +18,8 @@ end
 
 lspconfig.clangd.setup {}
 lspconfig.pyright.setup {}
+lspconfig.asm_lsp.setup {}
+lspconfig.asm_lsp.setup {}
 
 -- Add clangd configuration
 -- lspconfig.clangd.setup {
