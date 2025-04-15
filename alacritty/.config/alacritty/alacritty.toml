@@ -1,51 +1,18 @@
-# Font 0x Nerd Font Proto
 [font]
-#Normal font (used for regular text)
-normal = { family = "0xProto Nerd Font", style = "Bold" }
-
-#Bold font (used for bold text)
-bold = { family = "0xProto Nerd Font", style = "Bold" }
-
-#Italic font (used for italicized text)
-italic = { family = "0xProto Nerd Font", style = "italic" }
-
-#Bold Italic font (used for bold italicized text)
-bold_italic = { family = "0xProto Nerd Font", style = "bold_italic" }
-size = 10
+normal = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "bold_italic" }
+size = 9.5
 
 
 [window]
-decorations = "none"
-#opacity = 0.5
-padding = { x = 5, y = 5 }
+padding = { x = 2, y = 2 }
 
-[colors.primary]
-background = "#08080b"
-foreground = "#787c99"
+[terminal]
+shell = { program = "/bin/zsh" }
 
-[colors.cursor]
-cursor = "#787c99"
-
-[colors.selection]
-text = "CellForeground"
-background = "#515c7e"
-
-[colors.normal]
-black = "#363b54"
-red = "#f7768e"
-green = "#41a6b5"
-yellow = "#e0af68"
-blue = "#7aa2f7"
-magenta = "#bb9af7"
-cyan = "#7dcfff"
-white = "#787c99"
-
-[colors.bright]
-black = "#363b54"
-red = "#f7768e"
-green = "#41a6b5"
-yellow = "#e0af68"
-blue = "#7aa2f7"
-magenta = "#bb9af7"
-cyan = "#7dcfff"
-white = "#787c99"
+[general]
+import = [
+    "~/.config/alacritty/themes/themes/ayu_dark.toml"
+]
