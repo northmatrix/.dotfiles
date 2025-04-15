@@ -9,24 +9,10 @@ return {
                 "rust-analyzer",
                 "asmfmt",
                 "codelldb",
+                "asm-lsp"
             },
         },
-    },
-    {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
-        dependencies = {
-            "williamboman/mason.nvim",
-        },
-        config = function()
-            require("mason-tool-installer").setup {
-                ensure_installed = {
-                    "codelldb",
-                },
-                auto_update = true,
-                run_on_start = true,
-            }
-        end,
-    },
+    }, 
     {
         "stevearc/conform.nvim",
         event = "BufWritePre", -- uncomment for format on save
