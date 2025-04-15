@@ -9,10 +9,10 @@ return {
                 "rust-analyzer",
                 "asmfmt",
                 "codelldb",
-                "asm-lsp"
+                "asm-lsp",
             },
         },
-    }, 
+    },
     {
         "stevearc/conform.nvim",
         event = "BufWritePre", -- uncomment for format on save
