@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
@@ -12,7 +12,6 @@ return {
       require "configs.lspconfig"
     end,
   },
-
   {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
@@ -23,9 +22,9 @@ return {
       local codelldb = mason_registry.get_package("codelldb")
       local extension_path = codelldb:get_install_path() .. "/extension/"
       local codelldb_path = extension_path .. "adapter/codelldb"
-      local liblldb_path = extension_path.. "lldb/lib/liblldb.dylib"
-	-- If you are on Linux, replace the line above with the line below:
-	-- local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+      --local liblldb_path = extension_path.. "lldb/lib/liblldb.dylib"
+	    -- If you are on Linux, replace the line above with the line below: i have done this
+	    local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
       local cfg = require('rustaceanvim.config')
 
       vim.g.rustaceanvim = {
@@ -64,7 +63,7 @@ return {
   },
 
   {
-    'rcarriga/nvim-dap-ui', 
+    'rcarriga/nvim-dap-ui',
     dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
     config = function()
 			require("dapui").setup()
@@ -88,13 +87,13 @@ return {
     end
   },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+   {
+   	"nvim-treesitter/nvim-treesitter",
+   	opts = {
+   		ensure_installed = {
+   			"vim", "lua", "vimdoc",
+        "html", "css", "nasm", "asm", "python", "toml", "rust"
+   		},
+   	},
+   },
 }

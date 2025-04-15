@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting z) 
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 source $ZSH/oh-my-zsh.sh
@@ -109,19 +109,20 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v="nvim"
-alias c="clear"
-export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_STYLE_OVERRIDE=kvantum
-export QT_QPA_PLATFORMTHEME=qt6ct
+alias alarm="sudo rtcwake -m mem -s 28800 && mpv ./Music/SingBlue.mp3"
+alias cat="bat"
+alias ls="exa"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-unset HISTFILE
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_NO_STORE
-HISTSIZE=0
-SAVEHIST=0
+# unset HISTFILE
+# setopt HIST_IGNORE_ALL_DUPS
+# setopt HIST_NO_STORE
+# HISTSIZE=0
+# SAVEHIST=0
 
 export PATH=$HOME/.local/bin:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
