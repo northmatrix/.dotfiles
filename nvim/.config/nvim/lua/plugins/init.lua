@@ -1,5 +1,33 @@
 return {
     {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "prettier",
+                "black",
+                "clang-format",
+                "rust-analyzer",
+                "asmfmt",
+                "codelldb",
+            },
+        },
+    },
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        dependencies = {
+            "williamboman/mason.nvim",
+        },
+        config = function()
+            require("mason-tool-installer").setup {
+                ensure_installed = {
+                    "codelldb",
+                },
+                auto_update = true,
+                run_on_start = true,
+            }
+        end,
+    },
+    {
         "stevearc/conform.nvim",
         event = "BufWritePre", -- uncomment for format on save
         opts = require "configs.conform",
@@ -101,6 +129,7 @@ return {
                 "python",
                 "toml",
                 "rust",
+                "c",
             },
         },
     },
