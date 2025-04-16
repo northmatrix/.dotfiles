@@ -111,7 +111,7 @@ alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias alarm="sudo rtcwake -m mem -s 28800 && mpv ./Music/SingBlue.mp3"
-alias cat="bat"
+alias cat="BAT_PAGER=cat bat"
 alias ls="exa"
 alias c="clear"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
