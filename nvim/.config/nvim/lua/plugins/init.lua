@@ -53,6 +53,7 @@ return {
                 "c",
                 "asm",
                 "nasm",
+                "go",
             },
         },
     },
