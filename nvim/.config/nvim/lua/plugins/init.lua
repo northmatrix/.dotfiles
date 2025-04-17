@@ -128,6 +128,12 @@ return {
                 "nasm",
                 "go",
             },
+            highlight = {
+                enable = true,
+            },
+            indent = {
+                enable = true,
+            },
         },
     },
 }
