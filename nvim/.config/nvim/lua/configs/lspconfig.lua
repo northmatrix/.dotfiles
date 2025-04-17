@@ -1,40 +1,5 @@
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "pyright", "clangd", "rust_analyzer" }
+local servers = { "html", "cssls", "pyright", "clangd", "rust_analyzer", "gopls" }
 
 vim.lsp.enable(servers)
-
-lspconfig.rust_analyzer.setup {
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                features = "all",
-                allFeatures = true,
-                buildScripts = { enable = true },
-            },
-            checkOnSave = { command = "clippy" },
-            procMacro = { enable = true },
-            diagnostics = {
-                enable = true,
-                enableExperimental = true,
-                disabled = { "unresolved-proc-macro" },
-            },
-            inlayHints = {
-                typeHints = true,
-                parameterHints = true,
-                chainingHints = true,
-            },
-            lens = { enable = true },
-            completion = {
-                addCallArgumentSnippets = true,
-                addCallParenthesis = true,
-            },
-            hover = {
-                actions = {
-                    references = { enable = true },
-                },
-            },
-        },
-    },
-}
