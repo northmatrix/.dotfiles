@@ -27,7 +27,13 @@ return {
             require "configs.lspconfig"
         end,
     },
-
+    {
+        "saecki/crates.nvim",
+        tag = "stable",
+        config = function()
+            require("crates").setup()
+        end,
+    },
     -- test new blink
     { import = "nvchad.blink.lazyspec" },
 
