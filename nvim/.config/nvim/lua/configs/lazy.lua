@@ -1,5 +1,5 @@
 return {
-    defaults = { lazy = true },
+    defaults = { lazy = false },
     install = { colorscheme = { "nvchad" } },
 
     ui = {
@@ -33,7 +33,7 @@ return {
                 "vimballPlugin",
                 "zip",
                 "zipPlugin",
-                "tutor",
+                --"tutor",
                 "rplugin",
                 "syntax",
                 "synmenu",
