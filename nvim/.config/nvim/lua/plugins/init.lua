@@ -52,6 +52,7 @@ return {
                 "python",
                 "c",
                 "asm",
+                "nasm",
             },
         },
     },
