@@ -5,7 +5,6 @@ return {
             require("lint").linters_by_ft = {
                 python = { "flake8" },
                 lua = { "luacheck" },
-                rust = { "clippy" },
             }
 
             vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -44,6 +43,7 @@ return {
                 "rust",
                 "python",
                 "c",
+                "asm",
             },
         },
     },

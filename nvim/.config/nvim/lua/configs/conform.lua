@@ -3,9 +3,9 @@ local options = {
         lua = { "stylua" },
         css = { "prettier" },
         html = { "prettier" },
-        rust = { "rustfmt" },
         c = { "clang-format" },
         python = { "black" },
+        asm = { "asmfmt" },
     },
 
     format_on_save = {
