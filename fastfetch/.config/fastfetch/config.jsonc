@@ -44,12 +44,21 @@
       "type": "title",
       "content": "{username}@{hostname}"
     },
- "break",   
+ "break",
+    {
+      "type": "host",
+      "key" : "Host"
+    },
     {
         "type": "os",
         "key": "OS",
         "keyColor": "red",
         "format": "{name} {version}"
+    },
+{
+      "type": "packages",
+      "key": "Packages",
+      "format" : "{} (Pacman)"
     },
     {
         "type": "kernel",
@@ -77,15 +86,7 @@
       "type": "swap",
       "key": "Swap"
     },
-    {
-      "type": "host",
-      "key" : "Host"
-    },
-    {
-      "type": "packages",
-      "key": "Packages",
-      "format" : "{} (Pacman)"
-    },
+    
     { "type": "localip",
       "key" : "IP"
     },
