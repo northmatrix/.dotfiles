@@ -111,10 +111,10 @@ source $ZSH/oh-my-zsh.sh
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias alarm="sudo rtcwake -m mem -s 28800 && mpv ./Downloads/Denver.mp3"
-alias ls="exa"
+# alias alarm="sudo rtcwake -m mem -s 28800 && mpv ./Downloads/Denver.mp3"
+# alias ls="exa"
 alias c="clear"
-alias neofetch="fastfetch"
+# alias neofetch="fastfetch"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

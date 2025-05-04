@@ -1,5 +1,11 @@
 default_border none 
 font pango:JetBrains Mono Nerd Font 10
+
+# client.focused          #4c7899 #9eec6a #ffffff #2e9ef4 #285577
+# client.unfocused        #333333 #222222 #888888 #292d2e #222222
+# client.focused_inactive #5f676a #222222 #ffffff #484e50 #222222
+# client.urgent           #2f343a #900000 #ffffff #900000 #900000
+#
 # Default config for sway
 #
 # Copy this to ~/.config/sway/config and edit it to your liking.
@@ -19,12 +25,12 @@ set $right l
 set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
-set $browser librewolf 
+set $browser firefox 
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Alien.jpg fill
+output * bg ~/Pictures/egg.png fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -233,8 +239,12 @@ bar {
     colors {
         statusline #ffffff
         background #0a0a0a
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+        focused_workspace  #9ece6a #9ece6a #ffffff
+        active_workspace   #444444 #444444 #ffffff
+        inactive_workspace #222222 #222222 #888888
+        urgent_workspace   #900000 #900000 #ffffff
+        binding_mode       #2f343a #2f343a #ffffff
+}
     # colors {
     #     statusline #ffffff
     #     background #323232

@@ -7,7 +7,3 @@ size = 11
 [window]
 padding = { x = 1, y = 1 }
 opacity=1
-[terminal]
-shell = { program = "/bin/zsh" }
-[general]
-import = ["~/.config/alacritty/themes/themes/tokyo_night_enhanced.toml"]
