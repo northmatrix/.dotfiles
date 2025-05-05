@@ -25,12 +25,12 @@ set $right l
 set $term foot
 # Your preferred application launcher
 set $menu wmenu-run
-set $browser firefox 
+set $browser firefox
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/egg.png fill
+output * bg ~/Pictures/Alien.jpg fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -234,8 +234,8 @@ bar {
     position top 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
+    #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while ~/.config/sway/status.sh; do sleep 1; done
     colors {
         statusline #ffffff
         background #0a0a0a
