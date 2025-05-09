@@ -1,5 +1,5 @@
 default_border none 
-font pango:JetBrains Mono Nerd Font 10
+font pango:JetBrains Mono Nerd Font 9
 
 # client.focused          #4c7899 #9eec6a #ffffff #2e9ef4 #285577
 # client.unfocused        #333333 #222222 #888888 #292d2e #222222
@@ -30,7 +30,7 @@ set $browser firefox
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/skyrim.jpg fill
+output * bg ~/Pictures/AlienAstronaut.jpg fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -99,7 +99,7 @@ input "type:keyboard" {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec 
 #
 # Moving around:
 #
@@ -239,7 +239,6 @@ bar {
     colors {
         statusline #ffffff
         background #0a0a0a
-        focused_workspace  #9ece6a #9ece6a #ffffff
         active_workspace   #444444 #444444 #ffffff
         inactive_workspace #222222 #222222 #888888
         urgent_workspace   #900000 #900000 #ffffff
