@@ -1,5 +1,9 @@
 return {
     {
+        "lervag/vimtex",
+        ft = "tex",
+    },
+    {
         "mfussenegger/nvim-lint",
         config = function()
             require("lint").linters_by_ft = {
@@ -29,27 +33,56 @@ return {
     },
     {
         "mrcjkb/rustaceanvim",
-        version = "^5", -- Recommended
-        lazy = false, -- This plugin is already lazy
+        version = "^5",
         ft = "rust",
         config = function()
-            local mason_registry = require "mason-registry"
-            local codelldb = mason_registry.get_package "codelldb"
-            local extension_path = codelldb:get_install_path() .. "/extension/"
-            local codelldb_path = extension_path .. "adapter/codelldb"
-            -- local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
-            -- If you are on Linux, replace the line above with the line below:
-            local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
-            local cfg = require "rustaceanvim.config"
+            local function setup_dap()
+                local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/"
+                local codelldb_path = extension_path .. "adapter/codelldb"
+                local liblldb_path = extension_path .. "lldb/lib/liblldb"
+                local this_os = vim.uv.os_uname().sysname
 
-            vim.g.rustaceanvim = {
-                dap = {
-                    adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
-                },
-            }
+                if this_os:find "Windows" then
+                    codelldb_path = extension_path .. "adapter\\codelldb.exe"
+                    liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+                else
+                    liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+                end
+
+                local cfg = require "rustaceanvim.config"
+                vim.g.rustaceanvim = {
+                    dap = {
+                        adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+                    },
+                }
+            end
+
+            setup_dap()
         end,
     },
-
+    -- {
+    --     "mrcjkb/rustaceanvim",
+    --     version = "^5", -- Recommended
+    --     lazy = false, -- This plugin is already lazy
+    --     ft = "rust",
+    --     config = function()
+    --         local mason_registry = require "mason-registry"
+    --         local codelldb = mason_registry.get_package "codelldb"
+    --         local extension_path = codelldb:get_install_path() .. "/extension/"
+    --         local codelldb_path = extension_path .. "adapter/codelldb"
+    --         -- local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+    --         -- If you are on Linux, replace the line above with the line below:
+    --         local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+    --         local cfg = require "rustaceanvim.config"
+    --
+    --         vim.g.rustaceanvim = {
+    --             dap = {
+    --                 adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+    --             },
+    --         }
+    --     end,
+    -- },
+    --
     {
         "rust-lang/rust.vim",
         ft = "rust",
@@ -108,7 +141,7 @@ return {
             require("todo-comments").setup()
         end,
     },
-    -- WARNING: Intefers with cmp
+    --  WARNING: Intefers with cmp
     -- test new blink
     -- { import = "nvchad.blink.lazyspec" },
 

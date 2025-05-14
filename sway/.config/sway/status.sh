@@ -59,5 +59,5 @@ brightness_line="$ICON_BRIGHTNESS $brightness_percent"
 music="$ICON_MUSIC  $(playerctl metadata artist) - $(playerctl metadata title)"
 
 # Final output
-echo "[ $music| | $date_line | $time_line | $battery_line | $vpn_line | $memory_usage | $cpu_line | $volume_line | $brightness_line | $updates_line ]"
+echo " $wl_clipboard | $music | $date_line | $time_line | $battery_line | $vpn_line | $memory_usage | $cpu_line | $volume_line | $brightness_line | $updates_line "
 

@@ -25,17 +25,20 @@ set $right l
 set $term foot
 # Your preferred application launcher
 set $menu  wmenu-run -s '#000000' -S '#9ece6a' -N '#0a0a0a' 
+set $prompt wmenu -s '#9ece6a' -S '#000000' -N '#0a0a0a' -m '#9ece6a' -M '#0a0a0a' -p "Enter text: " 
 set $browser firefox
 
+
+exec mako 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/AlienAstronaut.jpg fill
+output * bg ~/Pictures/Wallpaper/AlienRipley.png fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+# output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -43,11 +46,12 @@ output * bg ~/Pictures/AlienAstronaut.jpg fill
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
+
+exec swayidle -w \
+         timeout 300 'swaylock -f -c 000000' \
+         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         before-sleep 'swaylock -f -c 000000'
+
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -224,7 +228,13 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grim
+    bindsym $mod+Shift+F2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png  | wl-copy && notify-send "Screenshot" "Fullscreen screenshot saved." 
+    bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved." 
+    # Screen Recordings
+    bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mkv & notify-send 'Recording' 'Started'"
+    # Stop recording
+    bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'"
+
 
 for_window [class=".*"] border pixel 2
 client.focused #0a0a0a #0a0a0a #9ece6a #0a0a0a
