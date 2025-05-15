@@ -1,7 +1,21 @@
 return {
     {
-        "lervag/vimtex",
-        ft = "tex",
+     ;  "lervag/vimtex",
+        ft = { "tex", "latex" },
+        config = function()
+            vim.g.tex_flavor = "latex"
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_quickfix_mode = 0
+        end,
+    },
+    {
+        "KeitaNakamura/tex-conceal.vim",
+        ft = { "tex", "latex" },
+        config = function()
+            vim.opt.conceallevel = 1
+            vim.g.tex_conceal = "abdmg"
+            vim.cmd "hi Conceal ctermbg=none"
+        end,
     },
     {
         "mfussenegger/nvim-lint",
@@ -132,6 +146,26 @@ return {
             require("cmp").setup.buffer {
                 sources = { { name = "crates" } },
             }
+        end,
+    },
+    {
+        "lervag/vimtex",
+        ft = "tex",
+        config = function()
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_compiler_method = "latexmk"
+            vim.g.vimtex_view_forward_search_on_start = 1
+        end,
+    },
+    {
+        "lervag/vimtex",
+        ft = { "tex", "latex" },
+        config = function()
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_compiler_method = "latexmk"
+            vim.g.vimtex_view_forward_search_on_start = 1
+            vim.opt.conceallevel = 2
+            vim.opt.concealcursor = "nc"
         end,
     },
     {
