@@ -1,6 +1,9 @@
 # default_border none 
 font pango:JetBrains Mono Nerd Font Bold 9
 
+set $primary '#9ece6a'
+set $secondary '#111111'
+
 # client.focused          #4c7899 #9eec6a #ffffff #2e9ef4 #285577
 # client.unfocused        #333333 #222222 #888888 #292d2e #222222
 # client.focused_inactive #5f676a #222222 #ffffff #484e50 #222222
@@ -24,8 +27,8 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu  wmenu-run -s '#000000' -S '#9ece6a' -N '#0a0a0a' 
-set $prompt wmenu -s '#9ece6a' -S '#000000' -N '#0a0a0a' -m '#9ece6a' -M '#0a0a0a' -p "Enter text: " 
+set $menu  wmenu-run -s $secondary -S $primary -N  $secondary 
+set $prompt wmenu -s $primary -S $secondary -N $secondary -m $primary -M $secondary -p "Enter text: " 
 set $browser firefox
 
 
@@ -237,7 +240,7 @@ bindsym $mod+r mode "resize"
 
 
 for_window [class=".*"] border pixel 2
-client.focused #0a0a0a #0a0a0a #9ece6a #0a0a0a
+client.focused $secondary $secondary $primary $secondary
 
 #
 # Status Bar:
@@ -250,9 +253,9 @@ bar {
     #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
     status_command while ~/.config/sway/status.sh; do sleep 1; done
     colors {
-        statusline #9ece6a
-        background #0a0a0a
-        focused_workspace  #222222 #9ece6a #222222
+        statusline $primary
+        background $secondary
+        focused_workspace  $secondary $primary $secondary
         active_workspace   #444444 #444444 #ffffff
         inactive_workspace #222222 #222222 #888888
         urgent_workspace   #900000 #900000 #ffffff

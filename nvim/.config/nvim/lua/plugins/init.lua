@@ -1,23 +1,23 @@
 return {
-  {
-    "lervag/vimtex",
-    ft = { "tex", "latex" },
-    config = function()
-      vim.g.tex_flavor = "latex"
-      vim.g.vimtex_view_method = "zathura"
-      vim.g.vimtex_quickfix_mode = 0
-    end,
-  },
-  {
-    "KeitaNakamura/tex-conceal.vim",
-    ft = { "tex", "latex" },
-    config = function()
-      vim.opt.conceallevel = 1
-      vim.g.tex_conceal = "abdmg"
-      vim.cmd("hi Conceal ctermbg=none")
-    end,
-  },
-  {
+    {
+        "lervag/vimtex",
+        ft = { "tex", "latex" },
+        config = function()
+            vim.g.tex_flavor = "latex"
+            vim.g.vimtex_view_method = "zathura"
+            vim.g.vimtex_quickfix_mode = 0
+        end,
+    },
+    {
+        "KeitaNakamura/tex-conceal.vim",
+        ft = { "tex", "latex" },
+        config = function()
+            vim.opt.conceallevel = 1
+            vim.g.tex_conceal = "abdmg"
+            vim.cmd "hi Conceal ctermbg=none"
+        end,
+    },
+    {
         "mfussenegger/nvim-lint",
         config = function()
             require("lint").linters_by_ft = {
