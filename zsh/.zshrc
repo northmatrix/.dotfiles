@@ -12,12 +12,16 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# Path setup 
+export PATH=$PATH:$HOME/.cargo/bin
+
 # Sway startup script
 [[ $(tty) == /dev/tty1 ]] && exec sway
 export PATH=/opt/nvim-linux-x86_64/bin:$PATH
 
 # Init 
-PROMPT='%F{white}%n@%F{green}%m%f:%F{red}%~%f$ '
+#PROMPT='%F{white}%n@%F{green}%m%f:%F{red}%~%f$ '
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 #Aliases

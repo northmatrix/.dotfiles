@@ -1,8 +1,9 @@
 # default_border none 
-font pango:JetBrains Mono Nerd Font Bold 9
+font pango:JetBrains Mono Nerd Font Bold 10
 
-set $primary '#9ece6a'
-set $secondary '#111111'
+set $primary  '#7aa2f7'
+set $primary_dark '#3a507e' 
+set $secondary '#1a1b26'
 
 # client.focused          #4c7899 #9eec6a #ffffff #2e9ef4 #285577
 # client.unfocused        #333333 #222222 #888888 #292d2e #222222
@@ -27,16 +28,19 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu  wmenu-run -s $secondary -S $primary -N  $secondary 
+set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 12" 
 set $prompt wmenu -s $primary -S $secondary -N $secondary -m $primary -M $secondary -p "Enter text: " 
 set $browser firefox
 
-
+# exec swww-daemon &
 exec mako 
+
+#exec swww set ~/Pictures/Wallpaper/penguin.png fill
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/AlienRipley.png fill
+output * bg ~/Pictures/Wallpaper/Nightwalk.png fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -102,15 +106,15 @@ input "type:keyboard" {
     # mouse button for dragging.
     floating_modifier $mod normal
 
-    # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    # reload the configuration file
+    bindsym $mod+shift+c reload
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaymsg exit 
+    # exit sway (logs you out of your wayland session)
+    bindsym $mod+shift+e exec swaynag -t warning -m 'you pressed the exit shortcut. do you really want to exit sway? this will end your wayland session.' -b '[Yes exit sway]' 'swaymsg exit'  --font 'JetBrainsMono Nerd Font 12' --background $secondary --text $primary --button-background $secondary --button-text $primary --border $secondary --border-bottom $primary 
 #
-# Moving around:
+# moving around:
 #
-    # Move your focus around
+    # move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
@@ -232,7 +236,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
     bindsym $mod+Shift+F2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png  | wl-copy && notify-send "Screenshot" "Fullscreen screenshot saved." 
-    bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved." 
+    bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved."
     # Screen Recordings
     bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mkv & notify-send 'Recording' 'Started'"
     # Stop recording
@@ -240,9 +244,12 @@ bindsym $mod+r mode "resize"
 
 
 for_window [class=".*"] border pixel 2
-client.focused $secondary $secondary $primary $secondary
+client.focused $primary $secondary $primary $primary $primary
+client.unfocused $primary_dark $primary_dark $primary_dark $primary_dark $primary_dark
 
-#
+gaps inner 5
+gaps outer 5
+
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
@@ -253,8 +260,8 @@ bar {
     #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
     status_command while ~/.config/sway/status.sh; do sleep 1; done
     colors {
-        statusline $primary
-        background $secondary
+        statusline $primary 
+        background $secondary 
         focused_workspace  $secondary $primary $secondary
         active_workspace   #444444 #444444 #ffffff
         inactive_workspace #222222 #222222 #888888
