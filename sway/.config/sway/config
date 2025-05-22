@@ -1,19 +1,34 @@
-# default_border none 
 font pango:JetBrains Mono Nerd Font Bold 11
 
+# Tokyo Night Theme
+set $black   '#15161E'
+set $red     '#f7768e'
+set $green   '#9ece6a'
+set $yellow  '#e0af68'
+set $blue    '#7aa2f7'
+set $magenta '#bb9af7'
+set $cyan    '#7dcfff'
+set $white   '#a9b1d6'
+# End Tokyo Night Theme
 
 # BLUE THEME
-#
-set $primary  '#7aa2f7'
-set $primary_dark '#3a507e' 
+set $primary '#7aa2f7'
+set $primary_darker '#3a507e'
 set $secondary '#1a1b26'
+
+set $inactive '#3a507e' 
+set $urgent '#f7768e'
+set $active '#ffffff'
 
 # RED THEME 
 #
 # set $primary  '#f7768e'
 # set $primary_dark '#b70b2b' 
 # set $secondary '#1a1b26'
-
+#
+# set $inactive '#444444'
+# set $urgent '#900000'
+# set $active '#ffffff'
 
 # Default config for sway
 #
@@ -45,7 +60,7 @@ exec mako
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/Bridge.jpg fill
+output * bg ~/Pictures/Wallpaper/blue-road-walk.png fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -244,6 +259,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved."
     
     bindsym $mod+shift+f1 exec ~/.config/sway/cycle_wallpaper.sh
+    bindsym $mod+shift+g exec ~/.config/sway/swaylock.sh 
 
 
     # Screen Recordings
@@ -251,29 +267,23 @@ bindsym $mod+r mode "resize"
     # Stop recording
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'" 
 
+#client.<state> <border> <background> <text> <indicator> <child_border>
 for_window [class=".*"] border pixel 2
 client.focused $primary $secondary $primary $primary $primary
-client.unfocused $primary_dark $primary_dark $primary $primary_dark $primary_dark
+client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker
+#client.unfocused $secondary $secondary $primary $primary $secondary
+client.urgent $urgent $urgent $active $urgent $urgent
 
-gaps inner 0
-gaps outer 0
-
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    #status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    position top
     status_command while ~/.config/sway/status.sh; do sleep 1; done
     colors {
-        statusline $primary 
-        background $secondary 
+        statusline $primary
+        background $secondary
         focused_workspace  $secondary $primary $secondary
-        active_workspace   #444444 #444444 #ffffff
-        inactive_workspace $secondary $secondary #888888
-        urgent_workspace   #900000 #900000 #ffffff
+        active_workspace   $inactive $inactive $active
+        inactive_workspace $secondary $secondary $inactive
+        urgent_workspace   $urgent $urgent $active
         binding_mode       #2f343a #2f343a #ffffff
     }
 }

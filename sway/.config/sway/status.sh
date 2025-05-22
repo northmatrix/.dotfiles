@@ -65,5 +65,5 @@ if [ "$music_status" = "Playing" ]; then
 fi
 
 # Final output
-echo "$music   $date_line   $time_line   $battery_line   $vpn_line   $memory_usage   $cpu_line   $volume_line   $brightness_line   $updates_line"
+echo "$music   $date_line   $time_line   $battery_line   $vpn_line   $memory_usage   $cpu_line   $volume_line   $brightness_line   $updates_line "
 

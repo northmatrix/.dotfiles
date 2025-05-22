@@ -2,7 +2,7 @@
 swaylock \
 --font "JetBrainsMono Nerd Font Mono" \
 --font-size 16 \
---image ~/Pictures/Wallpaper/Nightwalk.png \
+--image ~/Pictures/Wallpaper/blue-road-walk.png \
 --scaling fill \
 --indicator-idle-visible \
 --indicator-radius 100 \

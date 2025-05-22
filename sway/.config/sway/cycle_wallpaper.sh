@@ -1,5 +1,5 @@
 #!/bin/bash
-DIR="$HOME/Pictures/Wallpaper"
+DIR="$HOME/Pictures/Wallpaper/"
 INDEX_FILE="$HOME/.cache/current_wallpaper_index"
 mkdir -p "$HOME/.cache"
 files=("$DIR"/*)
