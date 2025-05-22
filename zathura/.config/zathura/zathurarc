@@ -1,14 +1,35 @@
-set recolor true
-set recolor-keephue true
 
 
-set statusbar-h-padding 0
-set statusbar-v-padding 0
+# TOKYO THEME THIS IS IT
+set font "JetBrainsMono Nerd Font Bold 12"
+set default-bg                  "#1a1b26"
+set statusbar-fg                "#a9b1d6"
+set statusbar-bg                "#24283b"
+set inputbar-bg                 "#1a1b26"
+set inputbar-fg                 "#73daca"
+set notification-bg             "#1a1b26"
+set notification-fg             "#73daca"
+set notification-error-bg       "#1a1b26"
+set notification-error-fg       "#f7768e"
+set notification-warning-bg     "#1a1b26"
+set notification-warning-fg     "#f7768e"
+set highlight-color             "#e0af68"
+set highlight-active-color      "#9aa5ce"
+set completion-bg               "#24283b"
+set completion-fg               "#a9b1d6"
+set completion-highlight-fg     "#ffffff"
+set completion-highlight-bg     "24283b"
+# ABOVE THIS IS MY TOKYO THEME
+set scroll-page-aware true
+set scroll-full-overlap 0
+# THIS IS SOME SNAPPING
 
-#set recolor-lightcolor "#d7c4a6"
-#set recolor-darkcolor "#000000"
-
-
-set recolor-lightcolor "#1a1b26"
-set default-bg "#0a0b16"
-set recolor-darkcolor "#c0caf5"
+# set recolor true
+# set recolor-keephue true
+# set recolor-lightcolor "#ffffff"
+# set recolor-darkcolor "#000000"
+# set recolor-lightcolor "#d7c4a6"
+# set recolor-lightcolor "#FFFFFF"
+# set recolor-lightcolor "#1a1b26"
+# set default-bg "#0a0b16"
+# set recolor-darkcolor "#c0caf5"

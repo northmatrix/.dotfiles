@@ -1,5 +1,5 @@
 # default_border none 
-font pango:JetBrains Mono Nerd Font Bold 10
+font pango:JetBrains Mono Nerd Font Bold 11
 
 set $primary  '#7aa2f7'
 set $primary_dark '#3a507e' 
@@ -55,9 +55,9 @@ output * bg ~/Pictures/Wallpaper/Nightwalk.png fill
 #
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
+         timeout 300 './swaylock.sh' \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+         before-sleep './swaylock.sh'
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -238,17 +238,16 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+F2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png  | wl-copy && notify-send "Screenshot" "Fullscreen screenshot saved." 
     bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved."
     # Screen Recordings
-    bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mkv & notify-send 'Recording' 'Started'"
+    bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send 'Recording' 'Started'"
     # Stop recording
-    bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'"
-
+    bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'" 
 
 for_window [class=".*"] border pixel 2
 client.focused $primary $secondary $primary $primary $primary
-client.unfocused $primary_dark $primary_dark $primary_dark $primary_dark $primary_dark
+client.unfocused $primary_dark $primary_dark $primary $primary_dark $primary_dark
 
-gaps inner 5
-gaps outer 5
+gaps inner 0
+gaps outer 0
 
 # Status Bar:
 #
