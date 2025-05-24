@@ -1,3 +1,17 @@
+case $TERM in
+  foot|xterm*)
+    # Set title before command runs
+    preexec() {
+      print -Pn "\e]0;$1\a"
+    }
+
+    # Set title back to prompt info after command finishes
+    precmd() {
+      print -Pn "\e]0;%n@%m: %~\a"
+    }
+    ;;
+esac
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000

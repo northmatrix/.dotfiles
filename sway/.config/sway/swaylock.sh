@@ -2,7 +2,7 @@
 swaylock \
 --font "JetBrainsMono Nerd Font Mono" \
 --font-size 16 \
---image ~/Pictures/Wallpaper/blue-road-walk.png \
+--image ~/Pictures/Wallpaper/nuclear-reactor-red.jpg \
 --scaling fill \
 --indicator-idle-visible \
 --indicator-radius 100 \

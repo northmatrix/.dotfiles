@@ -50,7 +50,7 @@ set $term foot
 # Your preferred application launcher
 set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 12" 
 set $prompt wmenu -s $primary -S $secondary -N $secondary -m $primary -M $secondary -p "Enter text: " 
-set $browser firefox
+set $browser librewolf
 
 # exec swww-daemon &
 exec mako 
@@ -60,7 +60,7 @@ exec mako
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/blue-road-walk.png fill
+output * bg ~/Pictures/Wallpaper/nuclear-reactor-red.jpg fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -104,6 +104,8 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+seat * xcursor_theme Twilight-cursors 24
+
 ### Key bindings
 #
 # Basics:
@@ -118,7 +120,7 @@ input "type:keyboard" {
     bindsym $mod+d exec $menu
 
     # browser 
-    bindsym $mod+i exec $browser
+    bindsym $mod+p exec $browser
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -270,7 +272,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'" 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 2
+#for_window [class=".*"] border pixel 2
 client.focused $primary $secondary $primary $primary $primary
 client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker
 client.focused_inactive $primary_darker $secondary $primary_darker $primary_darker $primary_darker 
