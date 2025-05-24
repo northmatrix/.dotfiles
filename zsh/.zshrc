@@ -1,16 +1,50 @@
+print -Pn "\e]0;%n@%m: %~\a"
+
 case $TERM in
   foot|xterm*)
-    # Set title before command runs
+    # List of commands that should update the title
+    title_commands=(neovim nvim vim vi emacs nano cmus mpv vlc ssh tmux screen htop top btop less more man git)
+    
+    # Set title before command runs (only for specific commands)
     preexec() {
-      print -Pn "\e]0;$1\a"
+      local cmd=${1%% *}  # Get first word of command
+      
+      # Check if command is in our list
+      if (( ${title_commands[(Ie)$cmd]} )); then
+        case $cmd in
+          neovim|nvim|vim|vi)
+            # Show full command with file arguments for editors
+            print -Pn "\e]0;$1\a"
+            ;;
+          *)
+            # Just show command name for other programs
+            print -Pn "\e]0;$cmd\a"
+            ;;
+        esac
+      fi
     }
-
-    # Set title back to prompt info after command finishes
+    
+    # Always set title back to prompt info after command finishes
     precmd() {
       print -Pn "\e]0;%n@%m: %~\a"
     }
     ;;
 esac
+
+# case $TERM in
+#   foot|xterm*)
+#     # Set title before command runs
+#     preexec() {
+#       print -Pn "\e]0;$1\a"
+#     }
+#
+#     # Set title back to prompt info after command finishes
+#     precmd() {
+#       print -Pn "\e]0;%n@%m: %~\a"
+#     }
+#     ;;
+# esac
+#
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -40,4 +74,3 @@ eval "$(zoxide init zsh)"
 
 #Aliases
 alias ls="eza"
-alias alarm="sudo rtcwake -m mem -s 28800 && mpv ./Music/Fallout/07. Guy Mitchell - Heartaches By The Number.flac3"

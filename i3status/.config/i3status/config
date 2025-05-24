@@ -1,0 +1,103 @@
+general {
+    output_format = "i3bar"
+    colors = false
+    interval = 1
+}
+
+order += "cpu_usage"
+order += "cpu_temperature 0"  # Will show if available, hide if not
+order += "memory"
+order += "disk /"
+order += "disk /home"  # Will show if separate partition exists
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "battery 0"  # Will show on laptop, hide on desktop
+order += "volume master"
+order += "load"
+order += "time"
+
+cpu_usage {
+    format = " %usage"
+    max_threshold = 90
+    degraded_threshold = 75
+}
+
+cpu_temperature 0 {
+    format = "󰔏 %degrees°C"
+    max_threshold = 80
+    path = "/sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input"
+}
+
+memory {
+    format = " %percentage_used (%used/%total)"
+    threshold_degraded = "10%"
+    threshold_critical = "5%"
+}
+
+disk "/" {
+    format = "󰋊 %percentage_used (%avail)"
+    low_threshold = 10
+    threshold_type = "percentage_avail"
+}
+
+disk "/home" {
+    format = "󰋜 %percentage_used (%avail)"
+    low_threshold = 10
+    threshold_type = "percentage_avail"
+}
+
+
+wireless _first_ {
+    format_up = "󰖩 %quality (%essid) %ip"
+    format_down = "󰖪 Disconnected"
+}
+
+ethernet _first_ {
+    format_up = "󰈀 %ip (%speed)"
+    format_down = "󰈂 Disconnected"
+}
+
+# Battery will only show on laptops
+battery 0 {
+    format = "%status %percentage %remaining"
+    format_down = ""  # Hide if no battery
+    status_chr = "󰂄"
+    status_bat = "󰁹"
+    status_unk = "󰂑"
+    status_full = "󰁹"
+    low_threshold = 20
+    threshold_type = "percentage"
+    integer_battery_capacity = true
+    hide_seconds = true
+}
+
+# Alternative battery paths for different systems
+battery 1 {
+    format = "%status %percentage %remaining"
+    format_down = ""
+    status_chr = "󰂄"
+    status_bat = "󰁹"
+    status_unk = "󰂑"
+    status_full = "󰁹"
+    low_threshold = 20
+    threshold_type = "percentage"
+    integer_battery_capacity = true
+    hide_seconds = true
+}
+
+volume master {
+    format = "󰕾 %volume"
+    format_muted = "󰖁 Muted"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
+load {
+    format = "󰊚 %5min"
+    max_threshold = "2.0"
+}
+
+time {
+    format = "󰥔 %H:%M:%S   󰸗 %a, %b %d, %y"
+}

@@ -1,0 +1,41 @@
+general {
+    output_format = "i3bar"
+    colors = false   # disables all coloring
+    interval = 1
+}
+
+order += "cpu_usage"
+order += "memory"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "volume master"
+order += "time"
+
+cpu_usage {
+    format = " %usage"
+}
+
+memory {
+    format = " %percentage_used"
+}
+
+wireless _first_ {
+    format_up = " %quality"
+    format_down = "󰖪 Disconnected"
+}
+
+ethernet _first_ {
+        format_up = " %ip (%speed)"
+	format_down = " Disconnected"
+}
+
+volume master {
+    format = "  %volume"
+    format_muted = " Muted"
+    device = "default"
+    mixer = "master"
+}
+
+time {
+    format = " %H:%M:%S     %a, %b %d, %y"
+}

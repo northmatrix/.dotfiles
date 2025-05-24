@@ -281,7 +281,12 @@ client.urgent $urgent $urgent $active $urgent $urgent
 bar {
     position top
     height 25
-    status_command while ~/.config/sway/status.sh; do sleep 1; done
+
+    status_command i3status
+    #status_command while ~/i3bar/target/debug/i3bar; do sleep 1; done
+    separator_symbol "   "
+    #status_command while ~/.config/sway/status.sh; do sleep 1; done
+    
     colors {
         statusline $primary
         background $secondary
