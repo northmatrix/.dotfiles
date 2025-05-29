@@ -1,4 +1,6 @@
+eval "$(starship init zsh)"
 print -Pn "\e]0;%n@%m: %~\a"
+eval "$(zoxide init zsh)"
 
 case $TERM in
   foot|xterm*)
@@ -31,21 +33,6 @@ case $TERM in
     ;;
 esac
 
-# case $TERM in
-#   foot|xterm*)
-#     # Set title before command runs
-#     preexec() {
-#       print -Pn "\e]0;$1\a"
-#     }
-#
-#     # Set title back to prompt info after command finishes
-#     precmd() {
-#       print -Pn "\e]0;%n@%m: %~\a"
-#     }
-#     ;;
-# esac
-#
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -61,16 +48,11 @@ compinit
 # End of lines added by compinstall
 
 # Path setup 
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/miniforge3/bin
 
 # Sway startup script
 [[ $(tty) == /dev/tty1 ]] && exec sway
 export PATH=/opt/nvim-linux-x86_64/bin:$PATH
-
-# Init 
-#PROMPT='%F{white}%n@%F{green}%m%f:%F{red}%~%f$ '
-eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 
 #Aliases
 alias ls="eza"

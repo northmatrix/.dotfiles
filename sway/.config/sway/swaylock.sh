@@ -2,7 +2,7 @@
 swaylock \
 --font "JetBrainsMono Nerd Font Mono" \
 --font-size 16 \
---image ~/Pictures/Wallpaper/nuclear-reactor-red.jpg \
+--image ~/Pictures/Wallpaper/mojave.jpg \
 --scaling fill \
 --indicator-idle-visible \
 --indicator-radius 100 \

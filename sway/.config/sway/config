@@ -12,7 +12,8 @@ set $white   '#a9b1d6'
 # End Tokyo Night Theme
 
 # BLUE THEME
-set $primary '#7aa2f7'
+#set $primary '#7aa2f7'
+set $primary $blue
 set $primary_darker '#3a507e'
 set $secondary '#1a1b26'
 
@@ -60,7 +61,7 @@ exec mako
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/nuclear-reactor-red.jpg fill
+output * bg ~/Pictures/Wallpaper/mojave.jpg fill
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
@@ -261,18 +262,16 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved."
 
     # This is my own config
-    bindsym $mod+shift+f1 exec ~/.config/sway/cycle_wallpaper.sh
     bindsym $mod+shift+g exec ~/.config/sway/swaylock.sh 
-    bindsym $mod+shift+b exec ~/.config/sway/toggle_bar.sh 
-
 
     # Screen Recordings
     bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send 'Recording' 'Started'"
     # Stop recording
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'" 
 
+
 #client.<state> <border> <background> <text> <indicator> <child_border>
-#for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 2
 client.focused $primary $secondary $primary $primary $primary
 client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker
 client.focused_inactive $primary_darker $secondary $primary_darker $primary_darker $primary_darker 
@@ -281,11 +280,13 @@ client.urgent $urgent $urgent $active $urgent $urgent
 bar {
     position top
     height 25
-
-    status_command i3status
-    #status_command while ~/i3bar/target/debug/i3bar; do sleep 1; done
+    #status_command i3status
     separator_symbol "   "
+    tray_output none
     #status_command while ~/.config/sway/status.sh; do sleep 1; done
+    #status_command while ~/rustbar/target/debug/rustbar; do sleep 1; done
+    #status_command  ~/rustbar/target/release/rustbar
+    status_command  ~/rustbargpt/target/release/rustbargpt
     
     colors {
         statusline $primary
