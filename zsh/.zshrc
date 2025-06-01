@@ -1,6 +1,10 @@
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
+PROMPT='%F{white}%n%f@%F{215}%m%f:%F{blue}%~%f %# '
+
+eval "$(dircolors -b ~/.dircolors)"
+
 print -Pn "\e]0;%n@%m: %~\a"
-eval "$(zoxide init zsh)"
+#eval "$(zoxide init zsh)"
 
 case $TERM in
   foot|xterm*)
@@ -55,4 +59,8 @@ export PATH=$PATH:$HOME/.cargo/bin:$HOME/miniforge3/bin
 export PATH=/opt/nvim-linux-x86_64/bin:$PATH
 
 #Aliases
-alias ls="eza"
+alias l="ls"
+alias ls="ls --color"
+alias e="exit"
+alias v="nvim"
+alias c="clear"

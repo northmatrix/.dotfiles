@@ -1,7 +1,6 @@
 default-timeout=3000
-#background-color=#9ECE6A
-background-color=#7AA2F7
-text-color=#0A0A0A
+background-color=#1A1B26
+text-color=#FF9E64
 border-size=2
-border-color=#000000
+border-color=#FF9E64
 

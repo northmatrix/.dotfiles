@@ -1,6 +1,6 @@
-font pango:JetBrains Mono Nerd Font Bold 11
+font pango:JetBrains Mono Nerd Font Bold 13
 
-# Tokyo Night Theme
+# Tokyo Night Colors For Accent
 set $black   '#15161E'
 set $red     '#f7768e'
 set $green   '#9ece6a'
@@ -9,27 +9,15 @@ set $blue    '#7aa2f7'
 set $magenta '#bb9af7'
 set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
-# End Tokyo Night Theme
+set $orange  '#ff9e64'
 
-# BLUE THEME
-#set $primary '#7aa2f7'
-set $primary $blue
+# Universal config
+set $primary $orange
 set $primary_darker '#3a507e'
 set $secondary '#1a1b26'
-
 set $inactive '#3a507e' 
 set $urgent '#f7768e'
 set $active '#ffffff'
-
-# RED THEME 
-#
-# set $primary  '#f7768e'
-# set $primary_dark '#b70b2b' 
-# set $secondary '#1a1b26'
-#
-# set $inactive '#444444'
-# set $urgent '#900000'
-# set $active '#ffffff'
 
 # Default config for sway
 #
@@ -50,20 +38,59 @@ set $right l
 set $term foot
 # Your preferred application launcher
 set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 12" 
-set $prompt wmenu -s $primary -S $secondary -N $secondary -m $primary -M $secondary -p "Enter text: " 
-set $browser librewolf
+set $browser firefox 
 
-# exec swww-daemon &
+# Reusable scripts
+set $swaylock swaylock \
+	--font "JetBrainsMono Nerd Font Mono" \
+	--font-size 20 \
+	--image ~/Pictures/Wallpaper/sand-cave.jpg \
+	--scaling fill \
+	--indicator-idle-visible \
+	--indicator-radius 100 \
+	--indicator-thickness 15 \
+	--indicator-x-position 960 \
+	--indicator-y-position 540 \
+	--inside-color 1a1b26 \
+	--ring-color 7aa2f7 \
+	--line-color 414868 \
+	--separator-color 16161e \
+	--text-color c0caf5 \
+	--key-hl-color 7dcfff \
+	--bs-hl-color f7768e \
+	--inside-ver-color 1a1b26 \
+	--ring-ver-color 9ece6a \
+	--text-ver-color c0caf5 \
+	--inside-clear-color 1a1b26 \
+	--ring-clear-color e0af68 \
+	--text-clear-color c0caf5 \
+	--text-wrong-color c0caf5 \
+	--inside-wrong-color 1a1b26 \
+	--ring-wrong-color f7768e
+
+set $swaynag  exec swaynag \
+	  -t warning \
+	  -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' \
+	  -b 'Yes exit sway' 'swaymsg exit' \
+	  --font 'JetBrainsMono Nerd Font 12' \
+	  --background $secondary \
+	  --text $primary \
+	  --button-background $secondary \
+	  --button-text $primary \
+	  --border $secondary \
+	  --border-bottom $primary
+
+
+### Executions
+#
+# Mako for notifications
 exec mako 
-
-#exec swww set ~/Pictures/Wallpaper/penguin.png fill
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/mojave.jpg fill
-#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
+output * bg ~/Pictures/Wallpaper/sand-cave.jpg fill
+
 # Example configuration:
 #
 # output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -76,9 +103,9 @@ output * bg ~/Pictures/Wallpaper/mojave.jpg fill
 #
 
 exec swayidle -w \
-         timeout 300 './swaylock.sh' \
+         timeout 300 $swaylock \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep './swaylock.sh'
+         before-sleep $swaylock
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -105,6 +132,9 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+### Customization
+#
+# Customizing the mouse
 seat * xcursor_theme Twilight-cursors 24
 
 ### Key bindings
@@ -133,7 +163,9 @@ seat * xcursor_theme Twilight-cursors 24
     bindsym $mod+shift+c reload
 
     # exit sway (logs you out of your wayland session)
-    bindsym $mod+shift+e exec swaynag -t warning -m 'you pressed the exit shortcut. do you really want to exit sway? this will end your wayland session.' -b '[Yes exit sway]' 'swaymsg exit'  --font 'JetBrainsMono Nerd Font 12' --background $secondary --text $primary --button-background $secondary --button-text $primary --border $secondary --border-bottom $primary 
+    bindsym $mod+shift+e exec $swaynag
+    bindsym $mod+shift+g exec $swaylock 
+
 #
 # moving around:
 #
@@ -210,6 +242,10 @@ seat * xcursor_theme Twilight-cursors 24
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    # Toggle the bar
+    bindsym $mod+shift+b exec swaymsg bar mode toggle
+
 #
 # Scratchpad:
 #
@@ -254,15 +290,16 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
     bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    
     # Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    
     # Special key to take a screenshot with grim
-    bindsym $mod+Shift+F2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png  | wl-copy && notify-send "Screenshot" "Fullscreen screenshot saved." 
-    bindsym $mod+Shift+F3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy && notify-send "Screenshot" "Area screenshot saved."
-
-    # This is my own config
-    bindsym $mod+shift+g exec ~/.config/sway/swaylock.sh 
+    bindsym $mod+shift+f2 exec grim - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
+                                            | wl-copy && notify-send "screenshot" "fullscreen screenshot saved." 
+    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
+                                            | wl-copy && notify-send "screenshot" "area screenshot saved."
 
     # Screen Recordings
     bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send 'Recording' 'Started'"
@@ -279,15 +316,10 @@ client.urgent $urgent $urgent $active $urgent $urgent
 
 bar {
     position top
-    height 25
-    #status_command i3status
-    separator_symbol "   "
+    height 26
+    separator_symbol "  "
     tray_output none
-    #status_command while ~/.config/sway/status.sh; do sleep 1; done
-    #status_command while ~/rustbar/target/debug/rustbar; do sleep 1; done
-    #status_command  ~/rustbar/target/release/rustbar
-    status_command  ~/rustbargpt/target/release/rustbargpt
-    
+    status_command  ~/.cargo/bin/rocketbar
     colors {
         statusline $primary
         background $secondary
