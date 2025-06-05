@@ -1,7 +1,7 @@
-#eval "$(starship init zsh)"
-PROMPT='%F{white}%n%f@%F{215}%m%f:%F{blue}%~%f %# '
+eval "$(starship init zsh)"
+#PROMPT='%F{white}%n%f@%F{blue}%m%f:%F{blue}%~%f %# '
 
-eval "$(dircolors -b ~/.dircolors)"
+#eval "$(dircolors -b ~/.dircolors)"
 
 print -Pn "\e]0;%n@%m: %~\a"
 #eval "$(zoxide init zsh)"
@@ -64,3 +64,6 @@ alias ls="ls --color"
 alias e="exit"
 alias v="nvim"
 alias c="clear"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

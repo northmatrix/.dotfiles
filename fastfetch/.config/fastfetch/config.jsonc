@@ -11,15 +11,15 @@
         "right": 5         // Right padding
     },
     "color": {             // Override logo colors
-        "1": "red",
-        "2": "red"
+        "1": "blue",
+        "2": "blue"
     }
 },
 "display": {
     "separator": ": ",     // Separator between keys and values
     "color": {
-        "keys": "red",    // Key color
-        "title": "red"     // Title color
+        "keys": "blue",    // Key color
+        "title": "blue"     // Title color
     },
     "key": {
         "width": 12,       // Aligns keys to this width
@@ -52,7 +52,6 @@
     {
         "type": "os",
         "key": "OS",
-        "keyColor": "red",
         "format": "{name} {version}"
     },
 {
@@ -67,21 +66,22 @@
     {
     "type": "cpu",
     "key" : "CPU",
-    "format": "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max}"
+    "format": "{name}"
     },
     {
       "type" : "gpu",
-      "key" : "GPU"
+      "key" : "GPU",
+      "format" : "{name}"
     },
     {
 
         "type": "memory",
         "key": "Memory"
     },
-    {
-      "type": "disk",
-      "key": "Disk"
-    },
+    // {
+    //   "type": "disk",
+    //   "key": "Disk"
+    // },
     {
       "type": "swap",
       "key": "Swap"

@@ -1,7 +1,7 @@
-font pango:JetBrains Mono Nerd Font Bold 13
+font pango:JetBrains Mono Nerd Font Regular 12
 
 # Tokyo Night Colors For Accent
-set $black   '#15161E'
+set $black   '#15161Ef0'
 set $red     '#f7768e'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
@@ -9,12 +9,18 @@ set $blue    '#7aa2f7'
 set $magenta '#bb9af7'
 set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
-set $orange  '#ff9e64'
+
+set $orange        '#ff9e64'
+set $teal          '#1abc9c'
+set $pink          '#f7768e'
+set $lime          '#b9f27c'
+
 
 # Universal config
-set $primary $orange
+set $primary $blue
 set $primary_darker '#3a507e'
 set $secondary '#1a1b26'
+set $secondary $black
 set $inactive '#3a507e' 
 set $urgent '#f7768e'
 set $active '#ffffff'
@@ -25,6 +31,10 @@ set $active '#ffffff'
 #
 # Read `man 5 sway` for a complete reference.
 
+
+### Wallpaper
+#
+set $wallpaper ~/Pictures/Wallpaper/bridge.jpg
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -34,17 +44,18 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+
+# My Apps
 set $term foot
-# Your preferred application launcher
-set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 12" 
+set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
 set $browser firefox 
+set $files nautilus 
 
 # Reusable scripts
 set $swaylock swaylock \
 	--font "JetBrainsMono Nerd Font Mono" \
 	--font-size 20 \
-	--image ~/Pictures/Wallpaper/sand-cave.jpg \
+	--image $wallpaper \
 	--scaling fill \
 	--indicator-idle-visible \
 	--indicator-radius 100 \
@@ -83,13 +94,12 @@ set $swaynag  exec swaynag \
 
 ### Executions
 #
-# Mako for notifications
+# Mako for notificationis
 exec mako 
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpaper/sand-cave.jpg fill
+output * bg $wallpaper fill
 
 # Example configuration:
 #
@@ -106,6 +116,8 @@ exec swayidle -w \
          timeout 300 $swaylock \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep $swaylock
+
+exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -135,7 +147,7 @@ input "type:keyboard" {
 ### Customization
 #
 # Customizing the mouse
-seat * xcursor_theme Twilight-cursors 24
+seat * xcursor_theme Adwaita 24
 
 ### Key bindings
 #
@@ -152,6 +164,7 @@ seat * xcursor_theme Twilight-cursors 24
 
     # browser 
     bindsym $mod+p exec $browser
+    bindsym $mod+t exec $files
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -244,8 +257,8 @@ seat * xcursor_theme Twilight-cursors 24
     bindsym $mod+a focus parent
 
     # Toggle the bar
-    bindsym $mod+shift+b exec swaymsg bar mode toggle
-
+    bindsym $mod+shift+b exec swaymsg bar mode invisible
+    bindsym $mod+shift+n exec swaymsg bar mode dock
 #
 # Scratchpad:
 #
@@ -297,14 +310,14 @@ bindsym $mod+r mode "resize"
     
     # Special key to take a screenshot with grim
     bindsym $mod+shift+f2 exec grim - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
-                                            | wl-copy && notify-send "screenshot" "fullscreen screenshot saved." 
+                                            | wl-copy && notify-send " Screenshot" "Fullscreen screenshot saved." 
     bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
-                                            | wl-copy && notify-send "screenshot" "area screenshot saved."
+                                            | wl-copy && notify-send " Screenshot" "Area screenshot saved."
 
     # Screen Recordings
-    bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send 'Recording' 'Started'"
+    bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send ' 󰑊 Recording' 'Started'"
     # Stop recording
-    bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send 'Recording' 'Ended'" 
+    bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send '󰑊 Recording' 'Ended'" 
 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
@@ -316,8 +329,8 @@ client.urgent $urgent $urgent $active $urgent $urgent
 
 bar {
     position top
-    height 26
-    separator_symbol "  "
+    height 24
+    separator_symbol "   "
     tray_output none
     status_command  ~/.cargo/bin/rocketbar
     colors {
