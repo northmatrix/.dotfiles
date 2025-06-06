@@ -31,10 +31,9 @@ set $active '#ffffff'
 #
 # Read `man 5 sway` for a complete reference.
 
-
 ### Wallpaper
 #
-set $wallpaper ~/Pictures/Wallpaper/bridge.jpg
+set $wallpaper ~/Pictures/wallpapers/bridge.jpg
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -330,9 +329,9 @@ client.urgent $urgent $urgent $active $urgent $urgent
 bar {
     position top
     height 24
-    separator_symbol "   "
+    separator_symbol "    "
     tray_output none
-    status_command  ~/.cargo/bin/rocketbar
+    status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
         statusline $primary
         background $secondary

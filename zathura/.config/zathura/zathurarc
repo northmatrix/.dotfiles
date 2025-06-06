@@ -20,9 +20,6 @@ set completion-fg               "#a9b1d6"
 set completion-highlight-fg     "#ffffff"
 set completion-highlight-bg     "24283b"
 # ABOVE THIS IS MY TOKYO THEME
-set scroll-page-aware true
-set scroll-full-overlap 0
-# THIS IS SOME SNAPPING
 
 # set recolor true
 # set recolor-keephue true
