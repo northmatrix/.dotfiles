@@ -1,4 +1,4 @@
-font pango:JetBrains Mono Nerd Font Regular 12
+font pango:JetBrains Mono Nerd Font Regular 11
 
 # Tokyo Night Colors For Accent
 set $black   '#15161Ef0'
@@ -19,7 +19,7 @@ set $lime          '#b9f27c'
 # Universal config
 set $primary $blue
 set $primary_darker '#3a507e'
-set $secondary '#1a1b26'
+#set $secondary '#1a1b26'
 set $secondary $black
 set $inactive '#3a507e' 
 set $urgent '#f7768e'
@@ -33,7 +33,8 @@ set $active '#ffffff'
 
 ### Wallpaper
 #
-set $wallpaper ~/Pictures/wallpapers/bridge.jpg
+set $wallpaper ~/Pictures/Wallpapers/bridge.jpg
+set $wallpaper_blurred ~/Pictures/Wallpapers/bridge-blurred.jpg
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -46,15 +47,15 @@ set $right l
 
 # My Apps
 set $term foot
-set $menu  wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
+set $menu wmenu-run -s $secondary  -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
 set $browser firefox 
 set $files nautilus 
-
-# Reusable scripts
+ 
+#  Reusable scripts
 set $swaylock swaylock \
 	--font "JetBrainsMono Nerd Font Mono" \
 	--font-size 20 \
-	--image $wallpaper \
+	--image $wallpaper_blurred \
 	--scaling fill \
 	--indicator-idle-visible \
 	--indicator-radius 100 \
@@ -95,6 +96,8 @@ set $swaynag  exec swaynag \
 #
 # Mako for notificationis
 exec mako 
+exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+exec gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -159,7 +162,7 @@ seat * xcursor_theme Adwaita 24
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu 
 
     # browser 
     bindsym $mod+p exec $browser
@@ -328,7 +331,7 @@ client.urgent $urgent $urgent $active $urgent $urgent
 
 bar {
     position top
-    height 24
+    height 25
     separator_symbol "    "
     tray_output none
     status_command  ~/.local/share/cargo/bin/rocketbar
