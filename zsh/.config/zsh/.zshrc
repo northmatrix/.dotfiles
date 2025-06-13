@@ -41,6 +41,7 @@ fi
 #ZDOTDIR                DEFAULT=${XDG_CONFIG_HOME}/zsh
 #TMUX_CONF              DEFAULT=${XDG_CONFIG_HOME}/tmux/tmux.conf
 #HISTFILE               DEFAULT=${XDG_STATE_HOME}/zsh/history
+export BAT_THEME=tokyonight
 
 # Paths
 add_paths() {
@@ -74,6 +75,7 @@ else
     eval "$(starship init zsh)"
 fi
 
+eval "$(zoxide init zsh)"
 
 # Key Binds
 bindkey -v
@@ -87,15 +89,19 @@ bindkey '^[[A' up-line-or-beginning-search
 bindkey '^[[B' down-line-or-beginning-search
 
 # Ls
-alias ls="exa --group-directories-first --sort=filename"
+alias ls="exa --group-directories-first --sort=filename --icons" 
 alias la="ls -A"
 alias ll="ls -l"
 alias lla="ll -A"
 alias lt="ls --tree --level=1"
 alias llt="lt -l"
+alias llta="llt -a"
 
 # Grep
 alias grep="grep --color=auto"
+
+# Cat
+alias cat="bat -p --pager never"
 
 # Nicities
 alias c="clear"
