@@ -1,7 +1,8 @@
-font pango:JetBrains Mono Nerd Font Regular 11
+font pango:JetBrains Mono Nerd Font Bold 11
 
 # Tokyo Night Colors For Accent
-set $black   '#15161Ef0'
+#set $black   '#15161Ef0'
+set $black   '#15161E'
 set $red     '#f7768e'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
@@ -33,7 +34,7 @@ set $active '#ffffff'
 
 ### Wallpaper
 #
-set $wallpaper ~/Pictures/Wallpapers/bridge.jpg
+set $wallpaper ~/Pictures/Wallpapers/fox.png
 set $wallpaper_blurred ~/Pictures/Wallpapers/bridge-blurred.jpg
 ### Variables
 #
@@ -47,7 +48,7 @@ set $right l
 
 # My Apps
 set $term foot
-set $menu wmenu-run -s $secondary  -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
+set $menu wmenu-run -s $primary  -S $secondary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
 set $browser firefox 
 set $files nautilus 
  
@@ -101,8 +102,12 @@ exec gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg $wallpaper fill
+#output * bg $wallpaper fill
 
+#output * bg $wallpaper fill
+
+#output * bg #15161E solid_color
+output * bg $wallpaper fill 
 # Example configuration:
 #
 # output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -331,14 +336,14 @@ client.urgent $urgent $urgent $active $urgent $urgent
 
 bar {
     position top
-    height 25
+    height 26
     separator_symbol "    "
     tray_output none
     status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
         statusline $primary
         background $secondary
-        focused_workspace  $secondary $primary $secondary
+        focused_workspace  $secondary $secondary $primary
         active_workspace   $inactive $inactive $active
         inactive_workspace $secondary $secondary $inactive
         urgent_workspace   $urgent $urgent $active
