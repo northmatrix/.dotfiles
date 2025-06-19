@@ -93,13 +93,36 @@ bindkey '^D' exit_zsh
 
 [[ $(tty) = /dev/tty1 ]] && exec sway
 
-# Define the theme
+# # Define the theme
+# prompt_mytheme_setup() {
+#     PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f'
+# }
+#
+# # Add the theme to promptsys
+# prompt_themes+=( mytheme )
+
+# Function to check if sudo timeout is active
+sudo_active() {
+  sudo -n true 2>/dev/null
+}
+
+# Define the theme with dynamic username color based on sudo status
 prompt_mytheme_setup() {
-    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f'
+  # Check sudo status and set username color accordingly
+  if sudo_active; then
+    local user_color='%B%F{red}'
+  else
+    local user_color='%B%F{white}'
+  fi
+
+  PROMPT="${user_color}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
 }
 
 # Add the theme to promptsys
 prompt_themes+=( mytheme )
+
+# Make prompt update dynamically before each command
+precmd_functions+=(prompt_mytheme_setup)
 
 eval "$(zoxide init zsh)"
 
