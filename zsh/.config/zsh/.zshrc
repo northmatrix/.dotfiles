@@ -1,201 +1,137 @@
-# Initialize sway wm from when tty1 launched
-[[ $(tty) == /dev/tty1 ]] && exec sway
-
-# Set tty color
-if [ "$TERM" = "linux" ]; then
-  # Standard colors
-  #echo -en '\e]P015161e'  # black
-  echo -en '\e]P0000000'  # black
-  echo -en '\e]P1f7768e'  # red
-  echo -en '\e]P29ece6a'  # green
-  echo -en '\e]P3e0af68'  # yellow
-  echo -en '\e]P47aa2f7'  # blue
-  echo -en '\e]P5bb9af7'  # magenta
-  echo -en '\e]P67dcfff'  # cyan
-  echo -en '\e]P7c0caf5'  # white
-  
-  # Bright colors
-  echo -en '\e]P8414868'  # bright black (gray)
-  echo -en '\e]P9f7768e'  # bright red
-  echo -en '\e]PA9ece6a'  # bright green
-  echo -en '\e]PBe0af68'  # bright yellow
-  echo -en '\e]PC7aa2f7'  # bright blue
-  echo -en '\e]PDBb9af7'  # bright magenta
-  echo -en '\e]PE7dcfff'  # bright cyan
-  echo -en '\e]PFa9b1d6'  # bright white
-  
-  clear
-fi
-
-#XDG_CONFIG_HOME   DEFAULT=@{HOME}/.config
-#XDG_CACHE_HOME    DEFAULT=@{HOME}/.cache
-#XDG_DATA_HOME     DEFAULT=@{HOME}/.local/share
-#XDG_STATE_HOME    DEFAULT=@{HOME}/.local/state
-#XDG_DATA_DIRS     DEFAULT=/usr/local/share:/usr/share
-#XDG_CONFIG_DIRS   DEFAULT=/etc/xdg
-#CARGO_HOME             DEFAULT=${XDG_DATA_HOME}/cargo
-#RUSTUP_HOME            DEFAULT=${XDG_DATA_HOME}/rustup
-#GOPATH                 DEFAULT=${XDG_DATA_HOME}/go
-#NPM_CONFIG_INIT_MODULE DEFAULT=${XDG_CONFIG_HOME}/npm/config/npm-init.js
-#NPM_CONFIG_CACHE       DEFAULT=${XDG_CACHE_HOME}/npm
-#NPM_CONFIG_TMP         DEFAULT=${XDG_RUNTIME_DIR}/npm
-#ZDOTDIR                DEFAULT=${XDG_CONFIG_HOME}/zsh
-#TMUX_CONF              DEFAULT=${XDG_CONFIG_HOME}/tmux/tmux.conf
-#HISTFILE               DEFAULT=${XDG_STATE_HOME}/zsh/history
-export BAT_THEME=tokyonight
-export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
-#export FZF_DEFAULT_OPTS="--no-border --style=minimal "
-
-
-
-# Paths
-add_paths() {
-  for d in "$@"; do
-    [[ -d "$d" && ! "$PATH" =~ (^|:)$d(:|$) ]] && PATH="$PATH:$d"
-  done
-}
-
-add_paths $CARGO_HOME/bin 
-
-# Setting Default mask
-umask 0077
-
-# Setting History settings 
-HISTSIZE=1000
-SAVEHIST=1000
-
-#  Options
-setopt autocd extendedglob nomatch notify 
-
-# Load zsh-completions if available
-
-
-# Auto Completion
-# autoload -Uz compinit 
-# compinit -i
-# zstyle ':completion:*' use-cache on
-# zstyle ':completion:*' cache-path ~/.zcache
-
-# Auto Completion
-# autoload -Uz compinit 
-# compinit -i
-#
-# # Cache settings (XDG-compliant)
-# zstyle ':completion:*' use-cache on
-# zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompcache"
-#
-# # Colored completion menus
-# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# zstyle ':completion:*' menu select
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-#
-
-# Auto Completion
-autoload -Uz compinit
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
-autoload -U colors && colors
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
-zstyle ':completion:*' frecent yes
-
-# Colored completion menus (explicit colors)
-  zstyle ':completion:*' list-colors \
-    'di=1;34' \
-    'fi=0' \
-    'ln=1;36' \
-    'ex=1;32'
-
- # Enable colors in completion lists
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# Alternative: More comprehensive coloring
-zstyle ':completion:*:*:*:*:descriptions' format '%F{green}%d%f'
-zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}%d(errors: %e) !%f'
-zstyle ':completion:*:messages' format ' %F{purple}%d%f'
-zstyle ':completion:*:warnings' format ' %F{red}no matches found%f'
+autoload -Uz compinit promptinit add-zsh-hook
+compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
+promptinit
 
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-# Additional enhancements
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' squeeze-slashes true
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+typeset -g -A key
 
-if [[ -f "${XDG_DATA_HOME}/zsh/zsh-completions/zsh-completions.zsh" ]]; then
-    source "${XDG_DATA_HOME}/zsh/zsh-completions/zsh-completions.zsh"
-fi
+key[home]="${terminfo[khome]}"
+key[end]="${terminfo[kend]}"
+key[insert]="${terminfo[kich1]}"
+key[backspace]="${terminfo[kbs]}"
+key[delete]="${terminfo[kdch1]}"
+key[up]="${terminfo[kcuu1]}"
+key[down]="${terminfo[kcud1]}"
+key[left]="${terminfo[kcub1]}"
+key[right]="${terminfo[kcuf1]}"
+key[pageup]="${terminfo[kpp]}"
+key[pagedown]="${terminfo[knp]}"
+key[shift-tab]="${terminfo[kcbt]}"
 
-if [[ -f "${XDG_DATA_HOME}/zsh/zsh-autocompletions/zsh-autocompletions.zsh" ]]; then
-    source "${XDG_DATA_HOME}/zsh/zsh-autocompletions/zsh-autocompletions.zsh"
-fi
-
-
-
-# Prompt
-if [[ $(tty) == /dev/tty* || -n $TMUX ]]; then
-	PROMPT="%F{white}%n%F{blue}%m%F{white}@%F{yellow}%~%F{white} %# "
-else
-    eval "$(starship init zsh)"
-    #PROMPT="%B%F{white}%n%f%b%F{blue}%m%F{white}@%B%F{yellow}%~%f%b%F{white} %# "
-fi
-
-# Initialize zoxide
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(zoxide init zsh)"
-
-# Key Binds
 bindkey -v
-bindkey '^?' backward-delete-char
-bindkey '^R' history-incremental-search-backward
-autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
+# setup key accordingly
+[[ -n "${key[home]}"      ]] && bindkey -- "${key[home]}"       beginning-of-line
+[[ -n "${key[end]}"       ]] && bindkey -- "${key[end]}"        end-of-line
+[[ -n "${key[insert]}"    ]] && bindkey -- "${key[insert]}"     overwrite-mode
+[[ -n "${key[backspace]}" ]] && bindkey -- "${key[backspace]}"  backward-delete-char
+[[ -n "${key[delete]}"    ]] && bindkey -- "${key[delete]}"     delete-char
+[[ -n "${key[up]}"        ]] && bindkey -- "${key[up]}"         up-line-or-history
+[[ -n "${key[down]}"      ]] && bindkey -- "${key[down]}"       down-line-or-history
+[[ -n "${key[left]}"      ]] && bindkey -- "${key[left]}"       backward-char
+[[ -n "${key[right]}"     ]] && bindkey -- "${key[right]}"      forward-char
+[[ -n "${key[pageup]}"    ]] && bindkey -- "${key[pageup]}"     beginning-of-buffer-or-history
+[[ -n "${key[pagedown]}"  ]] && bindkey -- "${key[pagedown]}"   end-of-buffer-or-history
+[[ -n "${key[shift-tab]}" ]] && bindkey -- "${key[shift-tab]}"  reverse-menu-complete
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+	autoload -Uz add-zle-hook-widget
+	function zle_application_mode_start { echoti smkx }
+	function zle_application_mode_stop { echoti rmkx }
+	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+fi
+
+
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey '^[[A' up-line-or-beginning-search
-bindkey '^[[B' down-line-or-beginning-search
 
-# Load zsh-syntax-highlighting
-if [[ -f "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-    source "${XDG_DATA_HOME}/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-fi
+[[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
+[[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-if [[ -f "${XDG_DATA_HOME}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
-    source "${XDG_DATA_HOME}/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
 
-# Ls
-alias ls="eza --color=auto" 
-alias l="ls"
-alias la="ls -A"
-alias ll="ls -l"
-alias lla="ll -A"
-alias lt="ls --tree --level=1"
-alias llt="lt -l"
-alias llta="llt -a"
 
-# Grep
-alias grep="grep --color=auto"
+key[Control-Left]="${terminfo[kLFT5]}"
+key[Control-Right]="${terminfo[kRIT5]}"
 
-# Cat
-alias cat="bat -p --pager never"
+[[ -n "${key[Control-Left]}"  ]] && bindkey -- "${key[Control-Left]}"  backward-word
+[[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
-# Nicities
-alias c="clear"
-alias cd="z"
-alias .="cd ."
-alias ..="cd .."
-alias ...="cd ../.."
-alias v="nvim"
 
-# File Operations
-alias mkdir="mkdir -pv"
-alias rm="rm -i"
-alias cp="cp -iv"
-alias mv="mv -iv"
 
-pacman_original() {
-    sudo tar -xOf /var/cache/pacman/pkg/"$1"-*.pkg.tar.zst "$2"
+function reset_broken_terminal () {
+	printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
 }
 
+add-zsh-hook -Uz precmd reset_broken_terminal
+
+
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %~\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{2}%n\005{-}@\005{5}%m\005{-} \005{+b 4}%~\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{2}%n\005{-}@\005{5}%m\005{-} \005{+b 4}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+if [[ "$TERM" == (Eterm*|alacritty*|aterm*|foot*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|wezterm*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
+
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey '^D' exit_zsh
+
+[[ $(tty) = /dev/tty1 ]] && exec sway
+
+# Define the theme
+prompt_mytheme_setup() {
+    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{cyan}%1~%f %(?.%F{green}.%F{red})%% %f'
+}
+
+# Add the theme to promptsys
+prompt_themes+=( mytheme )
+
+eval "$(zoxide init zsh)"
+
+
+umask 0077
+export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
+
+alias cd="z"
+alias ls="eza"
+alias grep="rg"
+
+# History file location
+HISTFILE="$XDG_DATA_HOME/zsh/history"
+
+# Number of commands to save in memory during session
+HISTSIZE=10000
+
+# Number of commands to save in the history file
+SAVEHIST=10000
+
+# History behavior options
+setopt APPEND_HISTORY         # Don't overwrite history file; append to it
+setopt INC_APPEND_HISTORY     # Save commands as they are typed
+setopt SHARE_HISTORY          # Share history across all sessions
+setopt HIST_IGNORE_DUPS       # Ignore duplicate commands
+setopt HIST_IGNORE_ALL_DUPS   # Delete old duplicates when new command is added
+setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
+setopt HIST_VERIFY            # Show command with history expansion before executing
+
+
+export EDITOR=vim
+export VISUAL=nvim
+
+# This will set the default prompt to the walters theme
+prompt mytheme

@@ -1,7 +1,6 @@
 font pango:JetBrains Mono Nerd Font Bold 11
 
 # Tokyo Night Colors For Accent
-#set $black   '#15161Ef0'
 set $black   '#15161E'
 set $red     '#f7768e'
 set $green   '#9ece6a'
@@ -11,16 +10,9 @@ set $magenta '#bb9af7'
 set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
 
-set $orange        '#ff9e64'
-set $teal          '#1abc9c'
-set $pink          '#f7768e'
-set $lime          '#b9f27c'
-
-
 # Universal config
 set $primary $blue
 set $primary_darker '#3a507e'
-#set $secondary '#1a1b26'
 set $secondary $black
 set $inactive '#3a507e' 
 set $urgent '#f7768e'
@@ -35,7 +27,7 @@ set $active '#ffffff'
 ### Wallpaper
 #
 set $wallpaper ~/Pictures/Wallpapers/fox.png
-set $wallpaper_blurred ~/Pictures/Wallpapers/bridge-blurred.jpg
+set $wallpaper_blurred ~/Pictures/Wallpapers/fox.png
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -97,17 +89,12 @@ set $swaynag  exec swaynag \
 #
 # Mako for notificationis
 exec mako 
-exec gsettings set org.gnome.desktop.interface color-scheme prefer-dark
-exec gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#output * bg $wallpaper fill
 
-#output * bg $wallpaper fill
-
-#output * bg #15161E solid_color
 output * bg $wallpaper fill 
+
 # Example configuration:
 #
 # output HDMI-A-1 resolution 1920x1080 position 1920,0
@@ -147,14 +134,14 @@ exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 # or input <identifier>
 input "type:keyboard" {
     xkb_layout gb
-    xkb_variant ,nodeadkeys
+    #xkb_variant nodeadkeys
     xkb_options grp:alt_shift_toggle
 }
 
 ### Customization
 #
 # Customizing the mouse
-seat * xcursor_theme Adwaita 24
+seat * xcursor_theme Moga-Cursor 24
 
 ### Key bindings
 #
@@ -316,9 +303,9 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     
     # Special key to take a screenshot with grim
-    bindsym $mod+shift+f2 exec grim - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
+    bindsym $mod+shift+f2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
                                             | wl-copy && notify-send " Screenshot" "Fullscreen screenshot saved." 
-    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/pictures/screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
+    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png \
                                             | wl-copy && notify-send " Screenshot" "Area screenshot saved."
 
     # Screen Recordings
@@ -339,6 +326,7 @@ bar {
     height 26
     separator_symbol "    "
     tray_output none
+    icon_theme Adwaita
     status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
         statusline $primary
