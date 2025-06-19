@@ -95,7 +95,7 @@ bindkey '^D' exit_zsh
 
 # Define the theme
 prompt_mytheme_setup() {
-    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{cyan}%~%f %(?.%F{green}.%F{red})%% %f'
+    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f'
 }
 
 # Add the theme to promptsys
@@ -110,6 +110,7 @@ export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 # better alts
 alias cd="z"
 alias ls="eza"
+alias ll="eza -l"
 alias la="eza -A"
 alias lt="eza -T --level=1" 
 alias grep="rg"
@@ -118,7 +119,10 @@ alias cat="bat --theme=tokyonight -pP"
 # shortcuts
 alias p="sudo pacman"
 alias SS="sudo systemctl"
+alias sv="sudo vim"
+alias sa="eval $(ssh-agent -s) ssh-add ~/.local/share/ssh/github_ed25519"
 alias v="vim"
+alias visudo="sudo visudo"
 alias g="git"
 alias ka="killall"
 alias nf="touch"
@@ -131,6 +135,8 @@ alias mv="mv -iv"
 alias cp="cp -irv"
 alias rm="rm -Iv"
 
+#lang shortcuts
+alias py="python3"
 # History file location
 HISTFILE="$XDG_DATA_HOME/zsh/history"
 
