@@ -1,3 +1,7 @@
+
+[[ $- != *i* ]] && return
+[[ $(tty) = /dev/tty1 ]] && exec sway
+
 autoload -Uz compinit promptinit add-zsh-hook
 compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
 promptinit
@@ -8,33 +12,32 @@ zstyle ':completion:*' menu select
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
-key[home]="${terminfo[khome]}"
-key[end]="${terminfo[kend]}"
-key[insert]="${terminfo[kich1]}"
-key[backspace]="${terminfo[kbs]}"
-key[delete]="${terminfo[kdch1]}"
-key[up]="${terminfo[kcuu1]}"
-key[down]="${terminfo[kcud1]}"
-key[left]="${terminfo[kcub1]}"
-key[right]="${terminfo[kcuf1]}"
-key[pageup]="${terminfo[kpp]}"
-key[pagedown]="${terminfo[knp]}"
-key[shift-tab]="${terminfo[kcbt]}"
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Backspace]="${terminfo[kbs]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[Left]="${terminfo[kcub1]}"
+key[Right]="${terminfo[kcuf1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[Shift-Tab]="${terminfo[kcbt]}"
 
-bindkey -v
 # setup key accordingly
-[[ -n "${key[home]}"      ]] && bindkey -- "${key[home]}"       beginning-of-line
-[[ -n "${key[end]}"       ]] && bindkey -- "${key[end]}"        end-of-line
-[[ -n "${key[insert]}"    ]] && bindkey -- "${key[insert]}"     overwrite-mode
-[[ -n "${key[backspace]}" ]] && bindkey -- "${key[backspace]}"  backward-delete-char
-[[ -n "${key[delete]}"    ]] && bindkey -- "${key[delete]}"     delete-char
-[[ -n "${key[up]}"        ]] && bindkey -- "${key[up]}"         up-line-or-history
-[[ -n "${key[down]}"      ]] && bindkey -- "${key[down]}"       down-line-or-history
-[[ -n "${key[left]}"      ]] && bindkey -- "${key[left]}"       backward-char
-[[ -n "${key[right]}"     ]] && bindkey -- "${key[right]}"      forward-char
-[[ -n "${key[pageup]}"    ]] && bindkey -- "${key[pageup]}"     beginning-of-buffer-or-history
-[[ -n "${key[pagedown]}"  ]] && bindkey -- "${key[pagedown]}"   end-of-buffer-or-history
-[[ -n "${key[shift-tab]}" ]] && bindkey -- "${key[shift-tab]}"  reverse-menu-complete
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"       beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"        end-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"     overwrite-mode
+[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}"  backward-delete-char
+[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"     delete-char
+[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"         up-line-or-history
+[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"       down-line-or-history
+[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"       backward-char
+[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"      forward-char
+[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"     beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"   end-of-buffer-or-history
+[[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -45,7 +48,6 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
-
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -91,30 +93,20 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-[[ $(tty) = /dev/tty1 ]] && exec sway
-
-# # Define the theme
-# prompt_mytheme_setup() {
-#     PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f'
-# }
-#
-# # Add the theme to promptsys
-# prompt_themes+=( mytheme )
-
 # Function to check if sudo timeout is active
-sudo_active() {
-  sudo -n true 2>/dev/null
-}
+# sudo_active() {
+#   sudo -n true 2>/dev/null
+# }
 
 # Define the theme with dynamic username color based on sudo status
 prompt_mytheme_setup() {
   # Check sudo status and set username color accordingly
-  if sudo_active; then
-    local user_color='%B%F{red}'
-  else
-    local user_color='%B%F{white}'
-  fi
-
+  # if sudo_active; then
+  #   local user_color='%B%F{red}'
+  # else
+  #   local user_color='%B%F{white}'
+  # fi
+  local user_color='%B%F{white}'
   PROMPT="${user_color}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
 }
 
@@ -127,28 +119,27 @@ precmd_functions+=(prompt_mytheme_setup)
 eval "$(zoxide init zsh)"
 
 
-umask 0077
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 
 # better alts
 alias cd="z"
-alias ls="eza"
-alias ll="eza -l"
-alias la="eza -A"
-alias lt="eza -T --level=1" 
-alias grep="rg"
+alias ls="eza -g --time-style=long-iso"
+alias ll="ls -l"
+alias la="ls -A"
+#alias grep="rg"
 alias cat="bat --theme=tokyonight -pP"
 
 # shortcuts
 alias p="sudo pacman"
-alias SS="sudo systemctl"
-alias sv="sudo vim"
+alias sd="sudo systemctl"
+alias sv="sudoedit"
 alias sa="eval $(ssh-agent -s) ssh-add ~/.local/share/ssh/github_ed25519"
 alias v="vim"
-alias visudo="sudo visudo"
 alias g="git"
+alias l="ls"
+alias c="clear"
+alias t="htop"
 alias ka="killall"
-alias nf="touch"
 alias .="cd ."
 alias ...="cd ../.."
 
@@ -183,8 +174,6 @@ setopt AUTO_CD
 
 export EDITOR=vim
 export VISUAL=nvim
-
-
 
 # This will set the default prompt to the walters theme
 prompt mytheme
