@@ -2,9 +2,12 @@
 syntax on
 
 " Use terminal colors
-set t_Co=256
+syntax on
+set termguicolors
 set background=dark
-colorscheme default
+colorscheme tokyonight
+
+" colorscheme default
 
 " Use 4 spaces for indentation
 set tabstop=4       " Number of visual spaces per TAB

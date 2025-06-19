@@ -95,7 +95,7 @@ bindkey '^D' exit_zsh
 
 # Define the theme
 prompt_mytheme_setup() {
-    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{cyan}%1~%f %(?.%F{green}.%F{red})%% %f'
+    PROMPT='%B%F{white}%n%f%b@%F{blue}%m%f %F{cyan}%~%f %(?.%F{green}.%F{red})%% %f'
 }
 
 # Add the theme to promptsys
@@ -107,9 +107,29 @@ eval "$(zoxide init zsh)"
 umask 0077
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 
+# better alts
 alias cd="z"
 alias ls="eza"
+alias la="eza -A"
+alias lt="eza -T --level=1" 
 alias grep="rg"
+alias cat="bat --theme=tokyonight -pP"
+
+# shortcuts
+alias p="sudo pacman"
+alias SS="sudo systemctl"
+alias v="vim"
+alias g="git"
+alias ka="killall"
+alias nf="touch"
+alias .="cd ."
+alias ...="cd ../.."
+
+# saftey
+alias mkdir="mkdir -pv"
+alias mv="mv -iv"
+alias cp="cp -irv"
+alias rm="rm -Iv"
 
 # History file location
 HISTFILE="$XDG_DATA_HOME/zsh/history"
@@ -130,8 +150,12 @@ setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
 setopt HIST_VERIFY            # Show command with history expansion before executing
 
 
+setopt AUTO_CD
+
 export EDITOR=vim
 export VISUAL=nvim
+
+
 
 # This will set the default prompt to the walters theme
 prompt mytheme
