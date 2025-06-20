@@ -105,7 +105,7 @@ bindkey '^D' exit_zsh
 
 # Define the theme with dynamic username color based on sudo status
 prompt_mytheme_setup() {
-  PROMPT="$%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
+  PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
 }
 
 # Add the theme to promptsys
@@ -123,46 +123,28 @@ export NPM_CONFIG_INIT_MODULE="${XDG_CONFIG_HOME}/npm/config/npm-init.js"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export NPM_CONFIG_TMP="${XDG_RUNTIME_DIR}/npm"
 export TMUX_CONF="${XDG_CONFIG_HOME}/tmux/tmux.conf"
-HISTFILE="${XDG_STATE_HOME}/zsh/history"
+
+# Personal
 export EDITOR=vim
 export VISUAL=nvim
 
-# # better alts
-# alias cd="z"
-# alias ls="eza -g --time-style=long-iso"
-# alias ll="ls -l"
-# alias la="ls -A"
-# alias grep="rg"
-# alias cat="bat --theme=tokyonight -pP"
-#
-# # shortcuts
-# alias p="sudo pacman"
-# alias sd="sudo systemctl"
-# alias sv="sudoedit"
-# alias sa="eval $(ssh-agent -s) ssh-add ~/.local/share/ssh/github_ed25519"
-# alias v="vim"
-# alias g="git"
-# alias l="ls"
-# alias c="clear"
-# alias t="htop"
-# alias ka="killall"
-# alias .="cd ."
-# alias ...="cd ../.."
-#
-# # saftey
-# alias mkdir="mkdir -pv"
-# alias mv="mv -iv"
-# alias cp="cp -irv"
-# alias rm="rm -Iv"
-#
-# #lang shortcuts
-# alias py="python3"
+# My aliases
+alias ls="ls --color"
+alias grep="grep --color"
+alias v="vim"
+alias sv="sudo vim"
 
-# Number of commands to save in memory during session
+# Paranoid :)
+alias mkdir="mkdir -pv"
+alias mv="mv -iv"
+alias cp="cp -irv"
+alias rm="rm -Iv"
+
+# History settings
+HISTFILE="${XDG_STATE_HOME}/zsh/history"
 HISTSIZE=10000
-
-# Number of commands to save in the history file
 SAVEHIST=10000
+
 
 # History behavior options
 setopt APPEND_HISTORY         # Don't overwrite history file; append to it
@@ -172,8 +154,6 @@ setopt HIST_IGNORE_DUPS       # Ignore duplicate commands
 setopt HIST_IGNORE_ALL_DUPS   # Delete old duplicates when new command is added
 setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
 setopt HIST_VERIFY            # Show command with history expansion before executing
-
-
 setopt AUTO_CD
 
 
