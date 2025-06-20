@@ -123,40 +123,40 @@ export NPM_CONFIG_INIT_MODULE="${XDG_CONFIG_HOME}/npm/config/npm-init.js"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export NPM_CONFIG_TMP="${XDG_RUNTIME_DIR}/npm"
 export TMUX_CONF="${XDG_CONFIG_HOME}/tmux/tmux.conf"
-export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export EDITOR=vim
 export VISUAL=nvim
 
-# better alts
-alias cd="z"
-alias ls="eza -g --time-style=long-iso"
-alias ll="ls -l"
-alias la="ls -A"
-alias grep="rg"
-alias cat="bat --theme=tokyonight -pP"
-
-# shortcuts
-alias p="sudo pacman"
-alias sd="sudo systemctl"
-alias sv="sudoedit"
-alias sa="eval $(ssh-agent -s) ssh-add ~/.local/share/ssh/github_ed25519"
-alias v="vim"
-alias g="git"
-alias l="ls"
-alias c="clear"
-alias t="htop"
-alias ka="killall"
-alias .="cd ."
-alias ...="cd ../.."
-
-# saftey
-alias mkdir="mkdir -pv"
-alias mv="mv -iv"
-alias cp="cp -irv"
-alias rm="rm -Iv"
-
-#lang shortcuts
-alias py="python3"
+# # better alts
+# alias cd="z"
+# alias ls="eza -g --time-style=long-iso"
+# alias ll="ls -l"
+# alias la="ls -A"
+# alias grep="rg"
+# alias cat="bat --theme=tokyonight -pP"
+#
+# # shortcuts
+# alias p="sudo pacman"
+# alias sd="sudo systemctl"
+# alias sv="sudoedit"
+# alias sa="eval $(ssh-agent -s) ssh-add ~/.local/share/ssh/github_ed25519"
+# alias v="vim"
+# alias g="git"
+# alias l="ls"
+# alias c="clear"
+# alias t="htop"
+# alias ka="killall"
+# alias .="cd ."
+# alias ...="cd ../.."
+#
+# # saftey
+# alias mkdir="mkdir -pv"
+# alias mv="mv -iv"
+# alias cp="cp -irv"
+# alias rm="rm -Iv"
+#
+# #lang shortcuts
+# alias py="python3"
 
 # Number of commands to save in memory during session
 HISTSIZE=10000
