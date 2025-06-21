@@ -3,8 +3,7 @@ syntax on
 set termguicolors
 set background=dark
 colorscheme tokyonight
-
-" colorscheme default
+highlight Normal ctermbg=none guibg=NONE
 
 " Use 4 spaces for indentation
 set tabstop=4       " Number of visual spaces per TAB

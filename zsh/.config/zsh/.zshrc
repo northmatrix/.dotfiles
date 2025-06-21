@@ -15,6 +15,7 @@ export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
 [[ $(tty) = /dev/tty1 ]] && exec sway-launch
 
 # Init auto compleition, prompt engine and hooks
+mkdir -p "${XDG_CACHE_HOME}/zsh"
 autoload -Uz compinit promptinit add-zsh-hook
 compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
 promptinit
@@ -130,9 +131,15 @@ export VISUAL=nvim
 
 # My aliases
 alias ls="ls --color"
+alias l="ls"
+alias la="ls -A"
+alias ll="ls -l"
+alias lla="ll -A"
+alias c="clear"
 alias grep="grep --color"
 alias v="vim"
 alias sv="sudo vim"
+alias q="exit"
 
 # Paranoid :)
 alias mkdir="mkdir -pv"
@@ -140,8 +147,14 @@ alias mv="mv -iv"
 alias cp="cp -irv"
 alias rm="rm -Iv"
 
+cd() {
+  builtin cd "$@" && ls
+}
+
+
 # History settings
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
+mkdir -p "$(dirname "$HISTFILE")"
 HISTSIZE=10000
 SAVEHIST=10000
 

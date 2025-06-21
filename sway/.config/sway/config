@@ -1,4 +1,4 @@
-font pango:JetBrains Mono Nerd Font Bold 11
+font pango:JetBrains Mono Nerd Font Bold 12
 
 # Tokyo Night Colors For Accent
 set $black   '#15161E'
@@ -38,7 +38,7 @@ set $right l
 
 # My Apps
 set $term foot
-set $menu wmenu-run -s $primary  -S $secondary -N  $secondary -f "JetBrains Mono Nerd Font Regular 12" 
+set $menu wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 13" 
 set $browser firefox 
 set $files nautilus 
  
@@ -51,6 +51,7 @@ set $swaynag ~/.config/sway/swaynag.sh $primary $secondary
 #
 # Mako for notificationis
 exec mako 
+exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -73,7 +74,6 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep $swaylock
 
-exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -268,8 +268,9 @@ bindsym $mod+r mode "resize"
     bindsym $mod+shift+f2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
     && notify-send " Screenshot" "Fullscreen screenshot saved"
 
-    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && | wl-copy \
-    && notify-send " Screenshot" "Area screenshot saved."
+    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
+    && notify-send " Screenshot" "Area screenshot saved"
+
     
     #bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
     #bindsym $mod+shift+f3 exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
