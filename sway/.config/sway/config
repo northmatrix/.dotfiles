@@ -39,7 +39,7 @@ set $right l
 # My Apps
 set $term foot
 set $menu wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 13" 
-set $browser firefox 
+set $browser librewolf
 set $files nautilus 
  
 #  Reusable scripts
@@ -194,7 +194,6 @@ seat * xcursor_theme Moga-Cursor 24
     # respectively.
     bindsym $mod+b splith
     bindsym $mod+v splitv
-
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed

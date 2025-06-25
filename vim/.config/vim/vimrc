@@ -1,9 +1,13 @@
 " Use terminal colors
 syntax on
-set termguicolors
-set background=dark
+
 colorscheme tokyonight
-highlight Normal ctermbg=none guibg=NONE
+
+if has("termguicolors") && &t_Co >= 256
+  set termguicolors
+  highlight Normal ctermbg=none guibg=NONE
+endif
+
 
 " Use 4 spaces for indentation
 set tabstop=4       " Number of visual spaces per TAB

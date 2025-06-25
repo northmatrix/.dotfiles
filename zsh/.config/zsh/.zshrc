@@ -104,15 +104,16 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-# Define the theme with dynamic username color based on sudo status
+# Dynamic prompt
 prompt_mytheme_setup() {
   PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
+  PROMPT="%B%F{white}skadi%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
 }
 
-# Add the theme to promptsys
+# Add to promptinit
 prompt_themes+=( mytheme )
 
-# Make prompt update dynamically before each command
+# Dynamic update
 precmd_functions+=(prompt_mytheme_setup)
 
 # Language/tool-specific environment variables
@@ -130,16 +131,22 @@ export EDITOR=vim
 export VISUAL=nvim
 
 # My aliases
+alias grep="grep --color"
 alias ls="ls --color"
-alias l="ls"
+
+alias .="cd ."
+alias ..="cd ../"
+alias ...="cd ../../"
 alias la="ls -A"
 alias ll="ls -l"
 alias lla="ll -A"
+
+alias l="ls"
 alias c="clear"
-alias grep="grep --color"
-alias v="vim"
-alias sv="sudo vim"
+alias v="nvim"
 alias q="exit"
+
+alias sv="sudo nvim"
 
 # Paranoid :)
 alias mkdir="mkdir -pv"
@@ -147,10 +154,15 @@ alias mv="mv -iv"
 alias cp="cp -irv"
 alias rm="rm -Iv"
 
-cd() {
-  builtin cd "$@" && ls
-}
+unalias run-help
+unalias which-command
 
+export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
+
+command_not_found_handler() {
+  echo -e "\e[31moops! that is not a command\e[0m"
+  return 127
+}
 
 # History settings
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
@@ -160,15 +172,36 @@ SAVEHIST=10000
 
 
 # History behavior options
-setopt APPEND_HISTORY         # Don't overwrite history file; append to it
-setopt INC_APPEND_HISTORY     # Save commands as they are typed
-setopt SHARE_HISTORY          # Share history across all sessions
-setopt HIST_IGNORE_DUPS       # Ignore duplicate commands
-setopt HIST_IGNORE_ALL_DUPS   # Delete old duplicates when new command is added
-setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks
-setopt HIST_VERIFY            # Show command with history expansion before executing
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+
+setopt EXTENDED_GLOB
+setopt GLOB_DOTS
+setopt NUMERIC_GLOB_SORT
+
 setopt AUTO_CD
 
+
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+
+setopt NO_BEEP
+
+
+
+chpwd() {
+    ls
+}
 
 # This will set the default prompt to the walters theme
 prompt mytheme
