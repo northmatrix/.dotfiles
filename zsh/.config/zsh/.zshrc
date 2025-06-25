@@ -1,18 +1,7 @@
 # Northmatrix's Zsh configuration
 
-# Return if the shell is non interactive
-[[ $- != *i* ]] && return
-
-# Set XDG base dirs with fallback and create directories if needed
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-export XDG_DATA_DIRS="${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
-export XDG_CONFIG_DIRS="${XDG_CONFIG_DIRS:-/etc/xdg}"
-
 # Execute sway if on tty1
-[[ $(tty) = /dev/tty1 ]] && exec sway-launch
+[[ $(tty) = /dev/tty1 ]] && command -v sway-launch >/dev/null && exec sway-launch
 
 # Init auto compleition, prompt engine and hooks
 mkdir -p "${XDG_CACHE_HOME}/zsh"

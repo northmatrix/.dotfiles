@@ -1,6 +1,8 @@
 [Unit]
 Description=Set custom VGA RGB palette with vtrgb
-Before=getty.target
+DefaultDependencies=no
+Before=systemd-vconsole-setup.service
+After=local-fs.target
 
 [Service]
 Type=oneshot
@@ -8,4 +10,4 @@ ExecStart=/usr/bin/setvtrgb  /etc/vtrgb/tokyo.hex
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
