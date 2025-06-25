@@ -14,6 +14,7 @@ cp  ~/.dotfiles/etc/systemd/resolved.conf /etc/systemd/resolved.conf
 cp  ~/.dotfiles/etc/systemd/network/20-ethernet.network /etc/systemd/network/20-ethernet.network
 cp  ~/.dotfiles/etc/systemd/system/vtrgb.service /etc/systemd/system/vtrgb.service
 # ========== Color Theme
+mkdir -p /etc/vtrgb/
 cp  ~/.dotfiles/etc/vtrgb/tokyo.hex /etc/vtrgb/tokyo.hex
 # ========== Binaries 
 cp ~/.dotfiles/usr/local/bin/sway-launch /usr/local/bin/sway-launch 
