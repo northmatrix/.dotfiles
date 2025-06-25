@@ -8,7 +8,7 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Install necessary packages
-pacman -Syu zsh vim stow
+pacman -S --needed zsh stow
 
 # Get the home directory of the original user who invoked sudo
 USER_HOME=$(eval echo ~$SUDO_USER)
