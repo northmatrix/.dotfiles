@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 echo "Northmatrix automatic dotfiles installer"
 # Install necessary packages
-pacman -Syu zsh vim
+pacman -Syu zsh vim stow
 # ======= Top Level ========
 cp  ~/.dotfiles/etc/issue /etc/issue
 cp  ~/.dotfiles/etc/login.defs /etc/login.defs
@@ -22,4 +22,3 @@ useradd -mG wheel northmatrix
 chsh -s /usr/bin/zsh northmatrix
 cp -r ~/.dotfiles /home/northmatrix/
 chown -R northmatrix:northmatrix /home/northmatrix/.dotfiles
-sudo -u northmatrix stow --target=/home/northmatrix /home/northmatrix/.dotfiles/zsh
