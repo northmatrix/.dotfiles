@@ -18,6 +18,8 @@ cp  ~/.dotfiles/etc/vtrgb/tokyo.hex /etc/vtrgb/tokyo.hex
 # ========== Binaries 
 cp ~/.dotfiles/usr/local/bin/sway-launch /usr/local/bin/sway-launch 
 # User setup
-stow zsh vim
 useradd -mG wheel northmatrix
 chsh -s /usr/bin/zsh northmatrix
+cp -r ~/.dotfiles /home/northmatrix/
+chown -R northmatrix:northmatrix /home/northmatrix/.dotfiles
+sudo -u northmatrix stow --target=/home/northmatrix /home/northmatrix/.dotfiles/zsh
