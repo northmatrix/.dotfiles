@@ -53,5 +53,9 @@ chown root:root /usr/local/bin/sway-launch
 chsh -s /usr/bin/zsh $SUDO_USER
 
 # Start zsh for the user to ensure they get the right environment
+stow zsh
 sudo -u $SUDO_USER zsh
+
+# Lets link systemd dns resolv.conf
+sudo ln -sf /run/systemd/resolve/stub-resolv.confg /etc/resolv.conf
 
