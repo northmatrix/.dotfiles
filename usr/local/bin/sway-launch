@@ -1,3 +1,0 @@
-export XDG_CURRENT_DESKTOP=sway
-export XCURSOR_PATH="/usr/share/icons:${XDG_DATA_HOME}/icons"
-exec sway "$@" 2>/dev/null
