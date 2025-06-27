@@ -130,10 +130,10 @@ alias lla="ll -A"
 
 alias l="ls"
 alias c="clear"
-alias v="nvim"
+alias v="vim"
 alias q="exit"
 
-alias sv="sudo nvim"
+alias sv="sudo vim"
 
 # Paranoid :)
 alias mkdir="mkdir -pv"
