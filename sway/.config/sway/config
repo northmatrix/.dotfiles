@@ -39,7 +39,7 @@ set $right l
 # My Apps
 set $term foot
 set $menu wmenu-run -s $secondary -S $primary -N  $secondary -f "JetBrains Mono Nerd Font Bold 13" 
-set $browser librewolf
+set $browser firefox
 set $files nautilus 
  
 #  Reusable scripts

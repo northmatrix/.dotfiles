@@ -1,5 +1,13 @@
 # Northmatrix's Zsh configuration
 
+#XDG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
 # Execute sway if on tty1
 [[ $(tty) = /dev/tty1 ]] && command -v sway-launch >/dev/null && exec sway-launch
 
@@ -7,6 +15,7 @@
 autoload -Uz compinit promptinit add-zsh-hook
 compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
 promptinit
+
 
 # Aut completion settings
 zstyle ':completion:*' menu select
