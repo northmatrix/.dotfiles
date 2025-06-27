@@ -113,13 +113,22 @@ export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export NPM_CONFIG_TMP="${XDG_RUNTIME_DIR}/npm"
 export TMUX_CONF="${XDG_CONFIG_HOME}/tmux/tmux.conf"
 
-# Personal
-export EDITOR=vim
-export VISUAL=nvim
 
 # My aliases
+
 alias grep="grep --color"
-alias ls="ls --color"
+
+if command -v bat &>/dev/null; then
+  alias cat="bat -Pp --theme tokyonight"
+else
+  alias cat="cat"
+fi
+
+if command -v eza &>/dev/null; then
+  alias ls="eza --color=auto"
+else
+  alias ls="ls --color"
+fi
 
 alias .="cd ."
 alias ..="cd ../"
@@ -141,8 +150,7 @@ alias mv="mv -iv"
 alias cp="cp -irv"
 alias rm="rm -Iv"
 
-unalias run-help
-unalias which-command
+
 
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 
