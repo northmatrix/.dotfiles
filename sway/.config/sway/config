@@ -55,7 +55,7 @@ exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-
+output eDP-1 mode 1920x1080
 output * bg ~/Pictures/Wallpapers/fox.png fill 
 
 # Example configuration:
