@@ -1,3 +1,6 @@
 [submodule ".dotfiles"]
 	path = .dotfiles
 	url = https://github.com/northmatrix/.dotfiles
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = https://github.com/northmatrix/nvim
