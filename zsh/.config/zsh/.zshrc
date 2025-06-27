@@ -4,7 +4,6 @@
 [[ $(tty) = /dev/tty1 ]] && command -v sway-launch >/dev/null && exec sway-launch
 
 # Init auto compleition, prompt engine and hooks
-mkdir -p "${XDG_CACHE_HOME}/zsh"
 autoload -Uz compinit promptinit add-zsh-hook
 compinit -d "$XDG_CACHE_HOME/zsh/.zcompdump"
 promptinit
@@ -96,7 +95,6 @@ bindkey '^D' exit_zsh
 # Dynamic prompt
 prompt_mytheme_setup() {
   PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
-  PROMPT="%B%F{white}skadi%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
 }
 
 # Add to promptinit
@@ -155,7 +153,6 @@ command_not_found_handler() {
 
 # History settings
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
-mkdir -p "$(dirname "$HISTFILE")"
 HISTSIZE=10000
 SAVEHIST=10000
 
