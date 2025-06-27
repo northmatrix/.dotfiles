@@ -292,7 +292,6 @@ bar {
     height 26
     separator_symbol "    "
     tray_output none
-    icon_theme Adwaita
     status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
         statusline $primary
