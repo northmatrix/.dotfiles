@@ -151,7 +151,7 @@ alias cp="cp -irv"
 alias rm="rm -Iv"
 
 
-
+export TERM=xterm-256color
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 
 command_not_found_handler() {
