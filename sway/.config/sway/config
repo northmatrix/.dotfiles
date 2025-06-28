@@ -56,7 +56,8 @@ exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output eDP-1 mode 1920x1080
-output * bg ~/Pictures/Wallpapers/fox.png fill 
+#output * bg ~/backgrounds/blue-black-forest-fox.png fill 
+output * bg $black solid_color 
 
 # Example configuration:
 #
@@ -292,7 +293,7 @@ bar {
     height 26
     separator_symbol "    "
     tray_output none
-    status_command  ~/.local/share/cargo/bin/rocketbar
+    #status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
         statusline $primary
         background $secondary
