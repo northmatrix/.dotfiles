@@ -1,3 +1,5 @@
+#zmodload zsh/zprof
+
 # Northmatrix's Zsh configuration
 
 #XDG
@@ -101,16 +103,19 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-# Dynamic prompt
-prompt_mytheme_setup() {
-  PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
-}
 
-# Add to promptinit
-prompt_themes+=( mytheme )
+eval "$(starship init zsh)"
 
-# Dynamic update
-precmd_functions+=(prompt_mytheme_setup)
+# # Dynamic prompt
+# prompt_mytheme_setup() {
+#   PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
+# }
+#
+# # Add to promptinit
+# prompt_themes+=( mytheme )
+#
+# # Dynamic update
+# precmd_functions+=(prompt_mytheme_setup)
 
 # Language/tool-specific environment variables
 export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
@@ -128,7 +133,7 @@ export TMUX_CONF="${XDG_CONFIG_HOME}/tmux/tmux.conf"
 alias grep="grep --color"
 
 if command -v bat &>/dev/null; then
-  alias cat="bat -Pp --theme tokyonight"
+  alias cat="bat -Pp"
 else
   alias cat="cat"
 fi
@@ -206,4 +211,7 @@ chpwd() {
 }
 
 # This will set the default prompt to the walters theme
-prompt mytheme
+
+#prompt mytheme
+
+#zprof

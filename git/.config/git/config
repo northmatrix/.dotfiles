@@ -1,3 +1,5 @@
 [user]
-email = contact@northmatrix.co.uk
-name = Northmatrix
+        email = contact@northmatrix.co.uk
+        name = Northmatrix
+[submodule]
+	recurse = true
