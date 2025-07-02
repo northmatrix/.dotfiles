@@ -103,22 +103,45 @@ exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
 
-
-eval "$(starship init zsh)"
+#eval "$(starship init zsh)"
 
 # # Dynamic prompt
-# prompt_mytheme_setup() {
-#   PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
-# }
-#
-# # Add to promptinit
-# prompt_themes+=( mytheme )
-#
-# # Dynamic update
-# precmd_functions+=(prompt_mytheme_setup)
+#prompt_mytheme_setup() {
+#  PROMPT="%B%F{white}%n%f%b@%F{blue}%m%f %F{yellow}%~%f %(?.%F{green}.%F{red})%% %f"
+#}
+
+# Add to promptinit
+#prompt_themes+=( mytheme )
+
+# Dynamic update
+#precmd_functions+=(prompt_mytheme_setup)
+
+#autoload -Uz vcs_info
+#zstyle ':vcs_info:git:*' formats '(%b)'
+
+#short_path() {
+#  local max=2
+#  local IFS=/
+#  local -a parts=(${(s:/:)PWD})
+#  (( ${#parts[@]} > max )) && echo ".../${(j:/:)parts[-max,-1]}" || echo "$PWD"
+#}
+
+#mytheme_setup() {
+#  local ec=$?
+#  local env_str=""
+#  [[ -n "${VIRTUAL_ENV-}" ]] && env_str="[$(basename $VIRTUAL_ENV)]"
+#  (( ec != 0 )) && ec="%F{red}${ec}%f " || ec=""
+#  PROMPT="%B${ec}%F{white}%n%f%b@%F{blue}%U%m%u%f %F{yellow}$(short_path)%f ${vcs_info_msg_0_} ${env_str} %(?.%F{green}.%F{red})%% %f"
+#}
+
+#precmd_functions+=(vcs_info)
+#precmd_functions+=(mytheme_setup)
+
 
 # Language/tool-specific environment variables
-export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
+export QT_QPA_PLATFORMTHEME=qt5ct
+export _JAVA_AWT_WM_NONREPARENTING=1
+#export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export GOPATH="${XDG_DATA_HOME}/go"
@@ -132,17 +155,17 @@ export TMUX_CONF="${XDG_CONFIG_HOME}/tmux/tmux.conf"
 
 alias grep="grep --color"
 
-if command -v bat &>/dev/null; then
-  alias cat="bat -Pp"
-else
+#if command -v bat &>/dev/null; then
+#  alias cat="bat -Pp"
+#else
   alias cat="cat"
-fi
+#fi
 
-if command -v eza &>/dev/null; then
-  alias ls="eza --color=auto --time-style=iso"
-else
+#if command -v eza &>/dev/null; then
+#  alias ls="eza --color=auto --time-style=iso"
+#else
   alias ls="ls --color"
-fi
+#fi
 
 alias .="cd ."
 alias ..="cd ../"
@@ -165,12 +188,11 @@ alias cp="cp -irv"
 alias rm="rm -Iv"
 
 
-export SUDO_PROMPT=$'\e[31m[sudo]\e[0m Password for %u: '
 
-command_not_found_handler() {
-  echo -e "\e[31moops! that is not a command\e[0m"
-  return 127
-}
+#command_not_found_handler() {
+#  echo -e "\e[31moops! that is not a command\e[0m"
+#  return 127
+#}
 
 # History settings
 HISTFILE="${XDG_STATE_HOME}/zsh/history"
@@ -212,6 +234,6 @@ chpwd() {
 
 # This will set the default prompt to the walters theme
 
-#prompt mytheme
+prompt redhat
 
 #zprof

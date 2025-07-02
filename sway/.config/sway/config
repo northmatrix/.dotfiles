@@ -56,8 +56,8 @@ exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output eDP-1 mode 1920x1080
-#output * bg ~/backgrounds/blue-black-forest-fox.png fill 
-output * bg $black solid_color 
+output * bg ~/.local/share/backgrounds/blue-black-forest-fox.png fill 
+#output * bg $black solid_color 
 
 # Example configuration:
 #
