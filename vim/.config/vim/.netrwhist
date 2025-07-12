@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/jamie/Documents/PythonStuff'
+let g:netrw_dirhist_5='/home/jamie/Documents/northmatrix.github.io/assets'
+let g:netrw_dirhist_4='/home/jamie/Documents/northmatrix.github.io/_posts'
+let g:netrw_dirhist_3='/home/jamie/.dotfiles/bash'
+let g:netrw_dirhist_2='/home/jamie/.dotfiles/zsh/.config/zsh'
+let g:netrw_dirhist_1='/home/jamie/.dotfiles/zsh/.config'

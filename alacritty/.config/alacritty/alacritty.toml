@@ -1,0 +1,9 @@
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "bold_italic" }
+size = 11
+[window]
+padding = { x = 1, y = 1 }
+opacity=1

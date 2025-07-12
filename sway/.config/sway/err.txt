@@ -1,0 +1,7 @@
+registry: adding output 54
+2025-06-20 16:41:11 - [swaybg-1.2.1/main.c:282] Found config * for output eDP-1 (Apple Computer Inc iMac)
+calculated sun trajectory: dawn 03:56, sunrise 05:03, sunset 20:57, dusk 22:04
+setting temperature to 6500 K
+warn: wayland.c:1766: compositor does not implement the XDG toplevel icon protocol
+Got SIGINT, exiting.
+00:00:00.010 [ERROR] [common/ipc-client.c:86] Unable to receive IPC response

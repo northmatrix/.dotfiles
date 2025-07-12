@@ -1,0 +1,21 @@
+" Set theme and syntax
+syntax on
+colorscheme tokyonight
+
+" Conditional statement for termguicolors
+if has("termguicolors") && &t_Co >= 256
+  set termguicolors
+  highlight Normal ctermbg=none guibg=NONE
+endif
+
+
+" Use 4 spaces for indentation
+set tabstop=4       " Number of visual spaces per TAB
+set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+set expandtab       " Use spaces instead of tabs
+set relativenumber
+
+" Enable smart indenting
+set smartindent
+set autoindent
+set viminfo=
