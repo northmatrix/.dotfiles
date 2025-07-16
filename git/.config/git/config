@@ -1,0 +1,5 @@
+[user]
+        email = contact@northmatrix.co.uk
+        name = Northmatrix
+[init]
+	defaultBranch = main
