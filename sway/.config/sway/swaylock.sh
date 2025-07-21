@@ -2,7 +2,7 @@
 exec swaylock \
   --font "JetBrainsMono Nerd Font" \
   --font-size 20 \
-  --image ~/Pictures/Wallpapers/fox.png \
+  --image ~/.local/share/backgrounds/blue-black-forest-fox.png \
   --scaling fill \
   --indicator-idle-visible \
   --indicator-radius 100 \

@@ -10,6 +10,18 @@ set $magenta '#bb9af7'
 set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
 
+set $ws1 "1  "
+set $ws2 "2  "
+set $ws3 "3 󱞁 " 
+set $ws4 "4  "  
+set $ws5 "5  "
+
+workspace $ws1 output eDP-1
+workspace $ws2 output eDP-1
+workspace $ws3 output eDP-1
+workspace $ws4 output eDP-1
+workspace $ws5 output eDP-1
+
 # Universal config
 set $primary $blue 
 set $primary_darker '#3a507e'
@@ -164,22 +176,22 @@ seat seat0 hide_cursor when-typing enable
 # Workspaces:
 #
     # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5 
     bindsym $mod+6 workspace number 6
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3 
+    bindsym $mod+Shift+4 move container to workspace $ws4 
+    bindsym $mod+Shift+5 move container to workspace $ws5 
     bindsym $mod+Shift+6 move container to workspace number 6
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
@@ -265,13 +277,15 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     
     # Special key to take a screenshot with grim
-    bindsym $mod+shift+f2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
-    && notify-send " Screenshot" "Fullscreen screenshot saved"
+    #bindsym $mod+shift+f2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
+    #&& notify-send " Screenshot" "Fullscreen screenshot saved"
 
-    bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
-    && notify-send " Screenshot" "Area screenshot saved"
+    #bindsym $mod+shift+f3 exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
+    #&& notify-send " Screenshot" "Area screenshot saved"
 
-    
+    bindsym $mod+shift+f2 exec flameshot full -c -p ~/Pictures/Screenshots
+    bindsym $mod+shift+a exec flameshot gui -c -p ~/Pictures/Screenshots
+
     #bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
     #bindsym $mod+shift+f3 exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
 
@@ -288,10 +302,11 @@ client.unfocused $primary_darker $secondary $primary_darker $primary_darker $pri
 client.focused_inactive $primary_darker $secondary $primary_darker $primary_darker $primary_darker 
 client.urgent $urgent $urgent $active $urgent $urgent
 
+title_align center
 bar {
     position top
     #height 26
-    separator_symbol "    "
+    separator_symbol "  "
     tray_output none
     status_command  ~/.local/share/cargo/bin/rocketbar
     colors {
