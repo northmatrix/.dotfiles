@@ -1,6 +1,8 @@
 " Set theme and syntax
 syntax on
-colorscheme tokyonight
+set background=dark
+colorscheme onedark
+hi Normal guibg=#000000
 set termguicolors
 set clipboard=unnamedplus
 " Conditional statement for termguicolors

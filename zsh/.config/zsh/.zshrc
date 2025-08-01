@@ -135,8 +135,9 @@ export PATH="$GOPATH/bin:$PATH"
 # My aliases
 
 alias grep="grep --color=always"
-alias cat="bat -Pp --theme=OneHalfDark"
-alias ls="eza --color=auto --time-style=iso --group"
+#alias cat="bat -Pp --theme=OneHalfDark"
+#alias ls="eza --time-style=iso --group"
+alias ls="ls --sort=extension --human-readable --color=always"
 alias .="cd ."
 alias ..="cd ../"
 alias ...="cd ../../"
@@ -146,10 +147,12 @@ alias lla="ll -A"
 
 alias l="ls"
 alias c="clear"
-alias v="vim"
+#alias v="vim"
+alias v="nvim"
+alias vim="nvim"
 alias q="exit"
 
-alias sv="sudo vim"
+alias sv="sudo rvim"
 
 # Paranoid :)
 alias mkdir="mkdir -pv"
@@ -204,15 +207,15 @@ autoload -Uz promptinit vcs_info
 promptinit
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats ' %F{red}[%b]%f'   # Git branch color
-zstyle ':vcs_info:*' actionformats ' %F{yellow}(%b|%a)%f'  # for other actions
+zstyle ':vcs_info:git:*' formats ' [%F{red}%b%f]'   # Git branch color
+zstyle ':vcs_info:*' actionformats ' %F({yellow}%b|%a%f)'  # for other actions
 
 precmd() {
   vcs_info
 }
 
-PROMPT='[%F{white}dead%F{white}@%F{blue}%m%f%F{yellow} %1~ %f]${vcs_info_msg_0_} %F{$(( $? == 0 ? 2 : 1 ))}%#%f '
-
+PROMPT='[%F{brightwhite}dead%F{brightwhite}@%F{blue}%m%f%F{yellow} %1~%f]${vcs_info_msg_0_}%F{$(( $? == 0 ? 2 : 1 ))}$%f '
+PROMPT='[%F{brightwhite}dead%F{brightwhite}@%F{blue}%m%f%F{yellow} %1~%f]${vcs_info_msg_0_}%F{$(( $? == 0 ? 2 : 1 ))}$%f '
 
 function osc7-pwd() {
     emulate -L zsh # also sets localoptions for us
@@ -226,7 +229,5 @@ function chpwd-osc7-pwd() {
 }
 
 add-zsh-hook -Uz chpwd chpwd-osc7-pwd
-
-eval "$(zoxide init zsh)"
 
 #zprof
