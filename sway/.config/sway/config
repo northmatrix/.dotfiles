@@ -2,7 +2,7 @@ font pango:JetBrains Mono Nerd Font Bold 12
 
 # Tokyo Night Colors For Accent
 set $black   '#15161E'
-set $black   '#000000'
+#set $black   '#000000'
 set $red     '#f7768e'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
@@ -285,7 +285,7 @@ bindsym $mod+r mode "resize"
 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 client.focused $primary $secondary $primary $primary $primary
 client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker
 client.focused_inactive $primary_darker $secondary $primary_darker $primary_darker $primary_darker 
