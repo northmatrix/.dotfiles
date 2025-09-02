@@ -17,8 +17,16 @@ fi
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
 export HISTSIZE=10000
 export HISTCONTROL=ignoredups:erasedups
-shopt -s histappend
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+#shopt -s histappend
+#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+PROMPT_COMMAND='
+if [ $? -eq 0 ]; then
+    history -a   # Append successful command
+else
+    history -d $((HISTCMD-1))  # Remove failed command
+fi
+'
 
 # Language/Tool-specific environment
 export QT_QPA_PLATFORMTHEME=qt5ct
@@ -57,15 +65,17 @@ alias cp="cp -irv"
 alias rm="rm -Iv"
 
 # Prompt with Git info
-parse_git_branch() {
-  git branch 2>/dev/null | grep '\*' | sed 's/* //'
-}
-export PS1='[\[\e[97m\]dead@\[\e[94m\]\h \[\e[93m\]\W\[\e[0m\]$(parse_git_branch)]\[\e[92m\]\$\[\e[0m\] '
+#parse_git_branch() {
+#  git branch 2>/dev/null | grep '\*' | sed 's/* //'
+#}
+
+#export PS1='[\[\e[97m\]dead@\[\e[94m\]\h \[\e[93m\]\W\[\e[0m\]$(parse_git_branch)]\[\e[92m\]\$\[\e[0m\] '
+export PS1='[\[\e[97m\]dead@\[\e[94m\]\h \[\e[93m\]\W\[\e[0m\]]\[\e[92m\]\$\[\e[0m\] '
 
 # Terminal title
 case "$TERM" in
   *xterm*|*rxvt*|*alacritty*|*foot*|*tmux*|*screen*|*wezterm*)
-    PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007";'
+    #PROMPT_COMMAND+='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007";'
     ;;
 esac
 
@@ -73,6 +83,30 @@ esac
 osc7_pwd() {
   printf '\e]7;file://%s%s\e\\' "$HOSTNAME" "${PWD// /%20}"
 }
-PROMPT_COMMAND="osc7_pwd; $PROMPT_COMMAND"
+#PROMPT_COMMAND="osc7_pwd; $PROMPT_COMMAND"
+
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    . /usr/share/bash-completion/completions/git
+fi
 
 
+set -o vi
+
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+# Enable programmable completion for history searching with tab
+bind '"\t": complete'
+bind -m vi-insert -x '"\eh": run-help'
+
+# Enable color in completion
+#complete -cf sudo
+shopt -s autocd
+shopt -s expand_aliases
+
+run-help() { help "$READLINE_LINE" 2>/dev/null || man  "$READLINE_LINE"; }
