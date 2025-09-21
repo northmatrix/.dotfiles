@@ -60,7 +60,7 @@ exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output eDP-1 mode 1920x1080
 #output * bg ~/.local/share/backgrounds/hollowblue.png fill
-output * bg ~/.local/share/backgrounds/hollowblue.png fill
+output * bg ~/.local/share/backgrounds/balcony.jpg fill
 #output * bg "#161650" solid_color 
 
 # Example configuration:
@@ -243,7 +243,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    # bindsym $mod+f fullscreen
+    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -325,7 +325,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send '󰑊 Recording' 'Ended'" 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 1
 # All Wayland apps
 for_window [app_id=".*"] opacity 1.0
 
