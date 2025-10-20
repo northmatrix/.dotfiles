@@ -1,0 +1,53 @@
+# Zathura Tokyo Night Dark Theme
+# Place this in ~/.config/zathura/zathurarc
+
+# Tokyo Night Color Palette - Main colors
+set default-bg "#12131b"
+set default-fg "#c0caf5"
+
+# Statusbar colors
+set statusbar-bg "#12131b"
+set statusbar-fg "#c0caf5"
+
+# Input bar colors
+set inputbar-bg "#16161e"
+set inputbar-fg "#c0caf5"
+
+# Completion menu colors
+set completion-bg "#16161e"
+set completion-fg "#c0caf5"
+set completion-highlight-bg "#7aa2f7"
+set completion-highlight-fg "#1a1b26"
+set completion-group-bg "#16161e"
+set completion-group-fg "#c0caf5"
+
+# Notification colors
+set notification-bg "#16161e"
+set notification-fg "#c0caf5"
+set notification-error-bg "#f7768e"
+set notification-error-fg "#1a1b26"
+set notification-warning-bg "#e0af68"
+set notification-warning-fg "#1a1b26"
+
+# Index/TOC colors
+set index-bg "#16161e"
+set index-fg "#c0caf5"
+set index-active-bg "#7aa2f7"
+set index-active-fg "#1a1b26"
+
+# Highlight colors for search results
+set highlight-color "rgba(122,162,247,0.4)"
+set highlight-active-color "rgba(187,154,247,0.4)"
+set highlight-fg "rgba(192,202,245,0.8)"
+
+# Recolor mode (invert colors for dark PDFs)
+set recolor true
+set recolor-lightcolor "#12131b"
+set recolor-darkcolor "#c0caf5"
+
+# Font
+set font "monospace normal 10"
+
+# Options
+set window-title-basename true
+set guioptions "scs"

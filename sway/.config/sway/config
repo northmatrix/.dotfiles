@@ -1,8 +1,7 @@
-font pango:JetBrains Mono Nerd Font Bold 13
+font pango: Iosevka Nerd Font Bold 11
 
 # Tokyo Night Colors For Accent
 set $black   '#15161E'
-set $black   '#12131bfe'
 set $red     '#f7768e'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
@@ -12,7 +11,7 @@ set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
 
 # Universal config
-set $primary $blue
+set $primary $red
 set $primary_darker '#3a507e'
 set $secondary $black
 set $secondarysee "#12131b55"
@@ -53,14 +52,14 @@ set $swaynag ~/.config/sway/swaynag.sh $primary $secondary
 #
 # Mako for notificationis
 exec mako 
-exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
-#exec waybar
+# exec wlsunset -l 51.5074 -L 0.1278 -g 0.9
+# exec waybar
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output eDP-1 mode 1920x1080
 #output * bg ~/.local/share/backgrounds/hollowblue.png fill
-output * bg ~/.local/share/backgrounds/balcony.jpg fill
+output * bg ~/.local/share/backgrounds/red-road-sunset.jpg fill
 #output * bg "#161650" solid_color 
 
 # Example configuration:
@@ -88,12 +87,12 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+ input "type:touchpad" {
+     dwt disabled
+     tap enabled
+     natural_scroll enabled
+     middle_emulation enabled
+ }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -101,15 +100,15 @@ exec swayidle -w \
 # or input <identifier>
 input "type:keyboard" {
     xkb_layout gb
-    #xkb_variant nodeadkeys
+    # xkb_variant nodeadkeys
     xkb_options grp:alt_shift_toggle
 }
 
 ### Customization
 #
 # Customizing the mouse
-seat * xcursor_theme Moga-Cursor 24
-#seat seat0 hide_cursor when-typing enable
+#seat * xcursor_theme Moga-Cursor 24
+# seat * hide_cursor when-typing disable
 ### Key bindings
 #
 # Basics:
@@ -313,11 +312,11 @@ bindsym $mod+r mode "resize"
     bindsym $mod+shift+z exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
     && notify-send " Screenshot" "Area screenshot saved"
 
-    bindsym $mod+shift+f2 exec flameshot full -c -p ~/Pictures/Screenshots
-    bindsym $mod+shift+a exec flameshot gui -c -p ~/Pictures/Screenshots
+    #bindsym $mod+shift+f2 exec flameshot full -c -p ~/Pictures/Screenshots
+    #bindsym $mod+shift+a exec flameshot gui -c -p ~/Pictures/Screenshots
 
-    #bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
-    #bindsym $mod+shift+f3 exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
+    bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
+    bindsym $mod+shift+a exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
 
     # Screen Recordings
     bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send ' 󰑊 Recording' 'Started'"
@@ -325,12 +324,12 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send '󰑊 Recording' 'Ended'" 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 1
+for_window [class=".*"] border pixel 2
 # All Wayland apps
-for_window [app_id=".*"] opacity 1.0
+for_window [app_id=".*"] opacity 1
 
 # All XWayland apps
-for_window [class=".*"] opacity 1.0
+for_window [class=".*"] opacity 1
 
 client.focused $primary $secondary $primary $primary $primary
 client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker
@@ -340,7 +339,7 @@ client.urgent $urgent $urgent $active $urgent $urgent
 title_align center
 bar {
      position top
-     height 32
+     #height 32
      separator_symbol "  "
      tray_output primary
      binding_mode_indicator yes
