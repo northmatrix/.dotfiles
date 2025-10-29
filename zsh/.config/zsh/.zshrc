@@ -2,8 +2,9 @@
 
 # Northmatrix's Zsh configuration
 
-eval "$(dircolors -b ~/.dircolors)"
 
+export EDITOR=nvim
+export VISUAL=nvim
 #XDG
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -14,6 +15,8 @@ export XDG_CONFIG_DIRS=/etc/xdg
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+
+eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 # Execute sway if on tty1
 [[ $(tty) = /dev/tty1 ]] && command -v sway-launch >/dev/null && exec sway-launch
 
@@ -141,7 +144,7 @@ export PATH="$GOPATH/bin:$PATH"
 alias grep="grep --color=always"
 #alias cat="bat -Pp --theme=OneHalfDark"
 #alias ls="eza --time-style=iso --group"
-alias ls="ls --sort=extension --human-readable --color=always"
+alias ls="ls --human-readable --color=always"
 alias .="cd ."
 alias ..="cd ../"
 alias ...="cd ../../"

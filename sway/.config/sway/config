@@ -2,6 +2,7 @@ font pango: Iosevka Nerd Font Bold 11
 
 # Tokyo Night Colors For Accent
 set $black   '#15161E'
+set $black   '#000000'
 set $red     '#f7768e'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
@@ -324,7 +325,7 @@ bindsym $mod+r mode "resize"
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send '󰑊 Recording' 'Ended'" 
 
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 # All Wayland apps
 for_window [app_id=".*"] opacity 1
 
@@ -341,7 +342,7 @@ bar {
      position top
      #height 32
      separator_symbol "  "
-     tray_output primary
+     tray_output primarcy
      binding_mode_indicator yes
      status_command  ~/.local/share/cargo/bin/rocketbar
      colors {
