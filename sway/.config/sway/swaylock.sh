@@ -2,14 +2,12 @@
 exec swaylock \
   --font "JetBrainsMono Nerd Font" \
   --font-size 20 \
-  --image ~/.local/share/backgrounds/blue-black-forest-fox.png \
+  --image ~/.local/share/backgrounds/red-road-sunset.jpg \
   --scaling fill \
   --indicator-idle-visible \
   --indicator-radius 100 \
   --indicator-thickness 15 \
-  --indicator-x-position 960 \
-  --indicator-y-position 540 \
-  --inside-color 1a1b26 \
+    --inside-color 1a1b26 \
   --ring-color 7aa2f7 \
   --line-color 414868 \
   --separator-color 16161e \
@@ -26,3 +24,7 @@ exec swaylock \
   --inside-wrong-color 1a1b26 \
   --ring-wrong-color f7768e
 
+
+#--indicator-x-position 960 \
+#  --indicator-y-position 540 \
+#  --ring-color 7aa2f7 \

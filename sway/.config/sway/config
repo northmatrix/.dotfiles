@@ -1,9 +1,10 @@
-font pango: Iosevka Nerd Font Bold 11
+font pango: Jet Brains Mono Nerd Font 13
 
 # Tokyo Night Colors For Accent
 set $black   '#15161E'
-set $black   '#000000'
+#set $black   '#000000'
 set $red     '#f7768e'
+#set $red     '#f72509'
 set $green   '#9ece6a'
 set $yellow  '#e0af68'
 set $blue    '#7aa2f7'
@@ -12,11 +13,13 @@ set $cyan    '#7dcfff'
 set $white   '#a9b1d6'
 
 # Universal config
-set $primary $red
+set $primary $blue
 set $primary_darker '#3a507e'
+#set $primary_darker '#262626'
 set $secondary $black
 set $secondarysee "#12131b55"
 set $inactive '#3a507e' 
+#set $inactive '#303030' 
 set $urgent '#f7768e'
 set $active '#ffffff'
 
@@ -58,9 +61,10 @@ exec mako
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output eDP-1 mode 1920x1080
+#output eDP-1 mode 1920x1080
 #output * bg ~/.local/share/backgrounds/hollowblue.png fill
-output * bg ~/.local/share/backgrounds/red-road-sunset.jpg fill
+output * bg ~/.local/share/backgrounds/blue-black-forest-fox.png fill
+#output * bg ~/Pictures/Screenshotsright.png fill
 #output * bg "#161650" solid_color 
 
 # Example configuration:
@@ -307,30 +311,31 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     
     # Special key to take a screenshot with grim
-    #bindsym $mod+shift+f2 exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
-    #&& notify-send " Screenshot" "Fullscreen screenshot saved"
+    bindsym $mod+shift+z exec grim - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
+    && notify-send " Screenshot" "Fullscreen screenshot saved"
 
-    bindsym $mod+shift+z exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
+    bindsym $mod+shift+a exec grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%H-%M-%S').png | wl-copy \
     && notify-send " Screenshot" "Area screenshot saved"
-
-    #bindsym $mod+shift+f2 exec flameshot full -c -p ~/Pictures/Screenshots
-    #bindsym $mod+shift+a exec flameshot gui -c -p ~/Pictures/Screenshots
-
-    bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
-    bindsym $mod+shift+a exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
-
+   
+    # bindsym $mod+shift+z exec flameshot full -c -p ~/Pictures/Screenshots
+    # bindsym $mod+shift+a exec flameshot gui -c -p ~/Pictures/Screenshots
+    #
+    # bindsym $mod+shift+f2 exec grim ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Fullscreen screenshot saved." 
+    # bindsym $mod+shift+a exec grim -g "$(slurp)"  ~/Pictures/Screenshots/screenshot_$(date +'%y-%m-%d_%h-%m-%s').png && notify-send " Screenshot" "Area screenshot saved."
+    
     # Screen Recordings
     bindsym $mod+Shift+R exec --no-startup-id sh -c "wf-recorder -f ~/Videos/ScreenRecordings/screen_recording_$(date +'%Y-%m-%d_%H-%M-%S').mp4 & notify-send ' 󰑊 Recording' 'Started'"
     # Stop recording
     bindsym $mod+Shift+S exec --no-startup-id sh -c "pkill -f 'wf-recorder' & notify-send '󰑊 Recording' 'Ended'" 
 
+
 #client.<state> <border> <background> <text> <indicator> <child_border>
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
 # All Wayland apps
-for_window [app_id=".*"] opacity 1
+for_window [app_id=".*"] opacity 1.00
 
 # All XWayland apps
-for_window [class=".*"] opacity 1
+for_window [class=".*"] opacity 1.00
 
 client.focused $primary $secondary $primary $primary $primary
 client.unfocused $primary_darker $secondary $primary_darker $primary_darker $primary_darker

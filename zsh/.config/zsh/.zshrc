@@ -16,9 +16,9 @@ export XDG_CONFIG_DIRS=/etc/xdg
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 
-eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
+#eval "$(dircolors -b $XDG_CONFIG_HOME/dircolors)"
 # Execute sway if on tty1
-[[ $(tty) = /dev/tty1 ]] && command -v sway-launch >/dev/null && exec sway-launch
+[[ $(tty) = /dev/tty1 ]] && command -v sway >/dev/null && exec sway
 
 # Init auto compleition, prompt engine and hooks
 autoload -Uz compinit promptinit add-zsh-hook
@@ -222,7 +222,7 @@ precmd() {
 }
 
 PROMPT='[%F{brightwhite}dead%F{brightwhite}@%F{blue}%m%f%F{yellow} %1~%f]${vcs_info_msg_0_}%F{$(( $? == 0 ? 2 : 1 ))}$%f '
-PROMPT='%F{brightwhite}%n%F{brightwhite}@%F{red}%m%f%F{yellow} %1~%f ${vcs_info_msg_0_}%F{$(( $? == 0 ? 2 : 1 ))}$%f '
+PROMPT='%F{brightwhite}%n%F{brightwhite}@%F{blue}%m%f%F{yellow} %1~%f ${vcs_info_msg_0_}%F{$(( $? == 0 ? 2 : 1 ))}$%f '
 
 function osc7-pwd() {
     emulate -L zsh # also sets localoptions for us
